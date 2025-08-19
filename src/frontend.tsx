@@ -7,11 +7,14 @@
 
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
+import { BrowserRouter as Router } from "react-router";
 
 const elem = document.getElementById("root")!;
 const app = (
+  <Router>
     <App />
-);
+  </Router>
+  );
 
 if (import.meta.hot) {
   // With hot module reloading, `import.meta.hot.data` is persisted.
