@@ -6,7 +6,7 @@ import { users } from "@/Schema/Schema";
 const client = new SQL(process.env.DATABASE_URL!);
 const db = drizzle({ client });
 
-const SignupUser = async (req: Request) => {
+const SignUp = async (req: Request) => {
   const { name, username, password } = await req.json();
 
   const exists = await db
@@ -23,4 +23,4 @@ const SignupUser = async (req: Request) => {
   await db.insert(users).values({ name, username, password: newPassword });
   return new Response("User Created Successfully", { status: 201 });
 };
-export default SignupUser;
+export default SignUp;
