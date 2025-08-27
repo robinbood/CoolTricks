@@ -1,0 +1,30 @@
+import { RedisClient } from "bun";
+const store = new RedisClient();
+
+
+const Authenticate = async (req: Request) => {
+    const cookieHeader = req.headers.get("cookie")
+    const hasCookie = cookieHeader?.startsWith("sessionId=")
+    if(!hasCookie){
+        return Response.redirect("./api/login")
+    }
+    const key = cookieHeader?.split("=")[1]?.split(";")[0]
+    if (!key) {
+        return Response.redirect("./api/login")
+    }
+
+    try {
+        const [userid] = await store.hmget(key,[
+            "userId"
+        ])
+        return{
+            userId:Number(userid)
+        }
+
+    } catch (error:unknown) {
+        console.log("Auth error",error);
+         
+    }
+}
+
+export default Authenticate;
