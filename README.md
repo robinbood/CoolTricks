@@ -1,9 +1,4 @@
-The haymaker
-============
-
-**A clean project** made with bun to practice the context hooks in react and the idea behind it..PS:i never really felt the need to use it
-
-## About this Project
+# About this Project
 
 This project serves as a practical playground for enhancing backend development skills while using modern tools:
 
@@ -19,7 +14,7 @@ The focus is on:
 3. Understanding state management flow
 4. Writing maintainable, type-safe code
 
-### Learning Goals
+## Learning Goals
 
 - Master TypeScript backend patterns
 - Optimize server-side performance with Bun
