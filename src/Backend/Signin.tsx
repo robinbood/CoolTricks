@@ -16,11 +16,23 @@ const SignIn = async (req: Request) => {
     .where(eq(users.username, username))
     .limit(1);
   if (!exists[0]) {
-    return new Response("User Not Found", { status: 401 });
+    return new Response(
+      JSON.stringify({
+        message: "User doesn't exist",
+      }),
+      {
+        status: 401,
+      }
+    );
   }
   const valid = await Bun.password.verify(password, exists[0]?.password);
   if (!valid) {
-    return new Response("Invalid Credentials", { status: 401 });
+    return new Response(
+      JSON.stringify({
+        message: "Invalid Credentials",
+      }),
+      { status: 401 }
+    );
   }
   const session = Bun.randomUUIDv7();
   const key = `session:${session}`;
@@ -34,7 +46,6 @@ const SignIn = async (req: Request) => {
     {
       status: 200,
       headers: {
-        "Content-type": "application/json",
         "Set-Cookie": `sessionId=${key}; HttpOnly; Secure; SameSite=strict; Path=/;`,
       },
     }

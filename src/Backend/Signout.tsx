@@ -34,7 +34,7 @@ const SignOut = async (req : Request) => {
 
             await store.del(sessionId)
             return new Response(JSON.stringify({
-                message:""
+                message:"Come back any time"
             }),{
                 headers:{
                     "Set-Cookie":newCookie,

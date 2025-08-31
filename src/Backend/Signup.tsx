@@ -14,13 +14,23 @@ const SignUp = async (req: Request) => {
     .from(users)
     .where(eq(username, users.username));
   if (exists.length > 0) {
-    return new Response("Username already exists", { status: 400 });
+    return new Response(JSON.stringify({
+      message:"User Already exists"
+    }),{
+      status:400,
+      
+    })
   }
   const newPassword = await Bun.password.hash(password, {
     algorithm: "argon2id",
     memoryCost: 10,
   });
   await db.insert(users).values({ name, username, password: newPassword });
-  return new Response("User Created Successfully", { status: 201 });
+  return new Response(JSON.stringify({
+    message:"User Created Successfully"
+  }),{
+    status:201,
+   
+  })
 };
 export default SignUp;
