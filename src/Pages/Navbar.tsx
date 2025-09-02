@@ -1,4 +1,4 @@
-import { useLocation,Link } from "react-router";
+import { useLocation,Link, Outlet } from "react-router";
 interface Navbar {
   label: string;
   path: string;
@@ -11,6 +11,7 @@ const Navar = () => {
   ];
 
   return (
+    <>
     <nav>
         {items.map((item : Navbar)  => {
             const isActive : boolean  = location.pathname === item.path
@@ -19,6 +20,10 @@ const Navar = () => {
             )
         })}
     </nav>
+    <main className="main-content">
+      <Outlet/>
+    </main>
+    </>
   )
 };
 

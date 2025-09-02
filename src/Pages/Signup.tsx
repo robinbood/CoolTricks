@@ -56,7 +56,9 @@ const SignUp = () => {
       console.log("Network Error: ", error);
     }
 
-    return (
+    
+  };
+  return (
       <div className="Signup-form">
         <h2 className="heading">
           {response ? (
@@ -115,7 +117,6 @@ const SignUp = () => {
         </form>
       </div>
     );
-  };
 };
 
 export default SignUp;
