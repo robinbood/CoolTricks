@@ -1,4 +1,4 @@
-const Main = async() => {
+const Main = () => {
     return (
         <></>
     )

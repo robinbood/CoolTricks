@@ -1,0 +1,226 @@
+/* Root variables - This demonstrates CSS custom properties for maintainable theming */
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --error-color: #dc2626;
+  --success-color: #16a34a;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --background: #f9fafb;
+  --white: #ffffff;
+  --border-color: #d1d5db;
+  --border-focus: #3b82f6;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --border-radius: 8px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base body styling - Foundation for the entire page */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--background) 0%, #e5e7eb 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main form container - This is your .Signup-form class */
+.Signup-form {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 420px;
+  margin: 1rem;
+  
+  /* Subtle animation on mount */
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Keyframe animation - Adds polish and perceived performance */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heading styles - Notice the approach to handling dynamic content */
+.heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.2;
+  
+  /* Minimum height prevents layout shift when content changes */
+  min-height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Span styling for the "Enter" text */
+.heading span {
+  color: var(--primary-color);
+  position: relative;
+}
+
+/* Form styling - Block-level container */
+.Signup-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Input field styling - The foundation of form UX */
+.Signup-form input[type="text"],
+.Signup-form input[type="password"],
+.Signup-form input:not([type="submit"]) {
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--white);
+  color: var(--text-primary);
+  transition: var(--transition);
+  outline: none;
+  
+  /* This prevents the input from shrinking */
+  flex-shrink: 0;
+}
+
+/* Placeholder styling - Subtle but important for UX */
+.Signup-form input::placeholder {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* Focus state - Critical for accessibility and UX */
+.Signup-form input:not([type="submit"]):focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+  transform: translateY(-1px);
+}
+
+/* Error state styling - Immediate visual feedback */
+.Signup-form input.error {
+  border-color: var(--error-color);
+  background-color: rgb(254 226 226 / 0.5);
+}
+
+.Signup-form input.error:focus {
+  box-shadow: 0 0 0 3px rgb(220 38 38 / 0.1);
+}
+
+/* Error message styling */
+.error-message {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: -1rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+  
+  /* Smooth entrance animation */
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Submit button - The call-to-action element */
+.Signup-form input[type="submit"] {
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  
+  /* Prevent text selection on buttons */
+  user-select: none;
+}
+
+/* Button hover and active states */
+.Signup-form input[type="submit"]:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.Signup-form input[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Loading/disabled state - Important for form submission UX */
+.Signup-form input[type="submit"]:disabled {
+  background: var(--text-secondary);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Success state for heading - Dynamic styling based on response */
+.heading {
+  transition: color 0.3s ease;
+}
+
+/* You can add this class dynamically when showing success messages */
+.heading.success {
+  color: var(--success-color);
+}
+
+/* Responsive design - Mobile-first approach */
+@media (max-width: 480px) {
+  .Signup-form {
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+  
+  .heading {
+    font-size: 1.5rem;
+  }
+  
+  .Signup-form input {
+    padding: 0.75rem;
+  }
+}
+
+/* Focus-visible for better keyboard navigation accessibility */
+.Signup-form input:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Dark mode support - Future-proofing your design */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --background: #111827;
+    --white: #1f2937;
+    --border-color: #374151;
+  }
+  
+  body {
+    background: linear-gradient(135deg, var(--background) 0%, #0f172a 100%);
+  }
+}

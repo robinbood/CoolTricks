@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler} from "react-hook-form";
-import {Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
+import "../CSS/Form.css"
 
 interface Info {
   username: string;
