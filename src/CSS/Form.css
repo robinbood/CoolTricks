@@ -5,31 +5,26 @@
 
 /* ===== FOUNDATIONAL RESET & CONTEXT ===== */
 
-html {
-  /* Essential: 3D rendering context without overdoing perspective */
-  perspective: 500px;
-  perspective-origin: center center;
-}
-
 body {
   background: #f8fafc;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   margin: 0;
   padding: 20px;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   
   /* Subtle, not distracting */
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  overflow: hidden;
+  
+  box-sizing: border-box;
 }
 
 /* ===== CORE FORM DESIGN ===== */
 
 .Signup-form {
-  max-width: 400px;
+  max-width: 580px;
   width: 100%;
   padding: 40px;
   background: white;
@@ -52,13 +47,15 @@ body {
 /* The 3D hover effect - refined and purposeful */
 .Signup-form:hover {
   /* Your requested translation with subtle enhancements */
-  transform: translate3d(0px, -20px, 40px) rotateX(-2deg);
+  transform: translate3d(-30px, -20px, 80px) ;
   
   /* Enhanced but not overwhelming shadow */
   box-shadow: 
     0 8px 25px rgba(0, 0, 0, 0.15),
     0 3px 10px rgba(0, 0, 0, 0.1),
     0 0 0 1px rgba(0, 0, 0, 0.05);
+
+  width: 120%;
 }
 
 /* Simple accent - no animation needed */
