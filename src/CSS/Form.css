@@ -1,226 +1,191 @@
-/* Root variables - This demonstrates CSS custom properties for maintainable theming */
-:root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
-  --error-color: #dc2626;
-  --success-color: #16a34a;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --background: #f9fafb;
-  --white: #ffffff;
-  --border-color: #d1d5db;
-  --border-focus: #3b82f6;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --border-radius: 8px;
-  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* Modern UI Designer-Approved Form CSS */
 
-/* Base body styling - Foundation for the entire page */
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, var(--background) 0%, #e5e7eb 100%);
+  background: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Main form container - This is your .Signup-form class */
 .Signup-form {
-  background: var(--white);
-  padding: 2.5rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-md);
-  width: 100%;
   max-width: 420px;
-  margin: 1rem;
-  
-  /* Subtle animation on mount */
-  animation: slideUp 0.3s ease-out;
-}
-
-/* Keyframe animation - Adds polish and perceived performance */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Heading styles - Notice the approach to handling dynamic content */
-.heading {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 2rem;
-  text-align: center;
-  line-height: 1.2;
-  
-  /* Minimum height prevents layout shift when content changes */
-  min-height: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Span styling for the "Enter" text */
-.heading span {
-  color: var(--primary-color);
+  margin: 80px auto;
+  padding: 48px 40px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
   position: relative;
 }
 
-/* Form styling - Block-level container */
-.Signup-form form {
+.Signup-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.heading {
+  margin: 0 0 32px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.heading span {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 20px;
 }
 
-/* Input field styling - The foundation of form UX */
-.Signup-form input[type="text"],
-.Signup-form input[type="password"],
-.Signup-form input:not([type="submit"]) {
-  padding: 0.875rem 1rem;
-  border: 2px solid var(--border-color);
-  border-radius: var(--border-radius);
-  font-size: 1rem;
-  font-family: inherit;
-  background: var(--white);
-  color: var(--text-primary);
-  transition: var(--transition);
+input:not([type="submit"]) {
+  width: 100%;
+  padding: 16px 18px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  background: white;
+  color: #0f172a;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
-  
-  /* This prevents the input from shrinking */
-  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
-/* Placeholder styling - Subtle but important for UX */
-.Signup-form input::placeholder {
-  color: var(--text-secondary);
+input:not([type="submit"])::placeholder {
+  color: #94a3b8;
   font-weight: 400;
 }
 
-/* Focus state - Critical for accessibility and UX */
-.Signup-form input:not([type="submit"]):focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+input:not([type="submit"]):focus {
+  border-color: #6366f1;
+  box-shadow: 
+    0 0 0 4px rgba(99, 102, 241, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.05);
   transform: translateY(-1px);
 }
 
-/* Error state styling - Immediate visual feedback */
-.Signup-form input.error {
-  border-color: var(--error-color);
-  background-color: rgb(254 226 226 / 0.5);
+input:not([type="submit"]):hover:not(:focus) {
+  border-color: #cbd5e1;
 }
 
-.Signup-form input.error:focus {
-  box-shadow: 0 0 0 3px rgb(220 38 38 / 0.1);
+input.error {
+  border-color: #ef4444;
+  background: #fef2f2;
 }
 
-/* Error message styling */
+input.error:focus {
+  border-color: #ef4444;
+  box-shadow: 
+    0 0 0 4px rgba(239, 68, 68, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
 .error-message {
-  color: var(--error-color);
-  font-size: 0.875rem;
+  color: #ef4444;
+  font-size: 14px;
   font-weight: 500;
-  margin-top: -1rem;
-  margin-bottom: 0.5rem;
-  padding-left: 0.25rem;
-  
-  /* Smooth entrance animation */
-  animation: fadeIn 0.2s ease-out;
+  margin-top: -16px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+.error-message::before {
+  content: '⚠';
+  font-size: 12px;
 }
 
-/* Submit button - The call-to-action element */
-.Signup-form input[type="submit"] {
-  background: var(--primary-color);
-  color: var(--white);
+input[type="submit"] {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
   border: none;
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  font-size: 1rem;
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
-  
-  /* Prevent text selection on buttons */
-  user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 6px -1px rgba(99, 102, 241, 0.4),
+    0 2px 4px -1px rgba(99, 102, 241, 0.06);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Button hover and active states */
-.Signup-form input[type="submit"]:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+input[type="submit"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
 }
 
-.Signup-form input[type="submit"]:active {
+input[type="submit"]:hover {
+  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 15px -3px rgba(99, 102, 241, 0.4),
+    0 4px 6px -2px rgba(99, 102, 241, 0.05);
+}
+
+input[type="submit"]:hover::before {
+  left: 100%;
+}
+
+input[type="submit"]:active {
   transform: translateY(0);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 
+    0 4px 6px -1px rgba(99, 102, 241, 0.4),
+    0 2px 4px -1px rgba(99, 102, 241, 0.06);
 }
 
-/* Loading/disabled state - Important for form submission UX */
-.Signup-form input[type="submit"]:disabled {
-  background: var(--text-secondary);
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+input[type="submit"]:focus {
+  outline: none;
+  box-shadow: 
+    0 4px 6px -1px rgba(99, 102, 241, 0.4),
+    0 2px 4px -1px rgba(99, 102, 241, 0.06),
+    0 0 0 4px rgba(99, 102, 241, 0.2);
 }
 
-/* Success state for heading - Dynamic styling based on response */
-.heading {
-  transition: color 0.3s ease;
-}
-
-/* You can add this class dynamically when showing success messages */
-.heading.success {
-  color: var(--success-color);
-}
-
-/* Responsive design - Mobile-first approach */
+/* Mobile responsive */
 @media (max-width: 480px) {
   .Signup-form {
-    padding: 1.5rem;
-    margin: 0.5rem;
+    margin: 40px 20px;
+    padding: 32px 24px;
   }
   
   .heading {
-    font-size: 1.5rem;
+    font-size: 24px;
   }
   
-  .Signup-form input {
-    padding: 0.75rem;
-  }
-}
-
-/* Focus-visible for better keyboard navigation accessibility */
-.Signup-form input:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-/* Dark mode support - Future-proofing your design */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text-primary: #f9fafb;
-    --text-secondary: #9ca3af;
-    --background: #111827;
-    --white: #1f2937;
-    --border-color: #374151;
+  input:not([type="submit"]) {
+    padding: 14px 16px;
   }
   
-  body {
-    background: linear-gradient(135deg, var(--background) 0%, #0f172a 100%);
+  input[type="submit"] {
+    padding: 16px;
   }
 }

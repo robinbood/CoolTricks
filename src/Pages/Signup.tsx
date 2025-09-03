@@ -113,7 +113,10 @@ const SignUp = () => {
           {errors.password?.message && (
             <span className="error-message">{errors.password.message}</span>
           )}
-          <input type="submit" />
+
+          <h2>Already a member ? <Link to="/signin">Sign In</Link></h2>
+          <input type="submit" value="Create Account" />
+          
         </form>
       </div>
     );
