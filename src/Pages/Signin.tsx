@@ -28,7 +28,7 @@ const SignIn = () => {
 
   const WhenSubmit: SubmitHandler<Info> = async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/api/Signin", {
+      const response = await fetch("http://localhost:3000/Signin", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -101,7 +101,7 @@ const SignIn = () => {
         )}
 
         <h2>
-          Not a member ? <Link to="/signup">Sign up</Link>
+          Not a member ? <Link to="/Signup">Sign up</Link>
         </h2>
 
         <input type="submit" value="Sign In" />

@@ -12,7 +12,7 @@ const SignUp = async (req: Request) => {
   const exists = await db
     .select()
     .from(users)
-    .where(eq(username, users.username));
+    .where(eq(users.username,username));
   if (exists.length > 0) {
     return new Response(JSON.stringify({
       message:"User Already exists"
@@ -24,6 +24,7 @@ const SignUp = async (req: Request) => {
   const newPassword = await Bun.password.hash(password, {
     algorithm: "argon2id",
     memoryCost: 10,
+    timeCost:5
   });
   await db.insert(users).values({ name, username, password: newPassword });
   return new Response(JSON.stringify({

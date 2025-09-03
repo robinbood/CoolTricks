@@ -27,8 +27,10 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const WhenSubmit: SubmitHandler<Info> = async (data) => {
+    console.log(data);
+    
     try {
-      const response = await fetch("http://localhost:3000/api/Signup", {
+      const response = await fetch("http://localhost:3000/Signup", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -114,7 +116,7 @@ const SignUp = () => {
             <span className="error-message">{errors.password.message}</span>
           )}
 
-          <h2>Already a member ? <Link to="/signin">Sign In</Link></h2>
+          <h2>Already a member ? <Link to="/Signin">Sign In</Link></h2>
           <input type="submit" value="Create Account" />
           
         </form>

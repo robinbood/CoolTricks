@@ -17,8 +17,6 @@ const server = serve({
         return SignUp(req)
       }
     }
-
- 
   },
 
   development: process.env.NODE_ENV !== "production" && {
