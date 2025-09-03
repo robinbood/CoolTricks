@@ -7,12 +7,12 @@ const server = serve({
   routes: {
     // Serve index.html for all unmatched routes.
     "/*": index,
-    "/api/Signin" : {
+    "/Signin" : {
       async POST(req) {
         return SignIn(req)
       }
     },
-    "/api/Signup" : {
+    "/Signup" : {
       async POST(req) {
         return SignUp(req)
       }
