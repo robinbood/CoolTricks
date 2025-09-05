@@ -10,7 +10,7 @@ export function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path="/*" element={<Main/>}/>
+        <Route path="/" element={<Main/>}/>
         <Route path="/Signin" element={<SignIn/>}/>
         <Route path="/Signup" element={<SignUp/>}/>
         <Route path="/home" element={<Navar/>}>
