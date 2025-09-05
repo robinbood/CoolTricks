@@ -1,0 +1,13 @@
+section {
+    animation: Shawty;
+    animation-timeline: view();
+}
+
+@keyframes Shawty {
+    from {
+        
+    }
+    to {
+
+    }
+}

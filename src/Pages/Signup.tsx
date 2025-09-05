@@ -40,7 +40,7 @@ const SignUp = () => {
 
       if (response.status === 201) {
         setTimeout(() => {
-          navigate("/api/Signin");
+          navigate("/Signin");
         }, 1000);
         const rec = await response.json();
         SetResponse(rec.message);
