@@ -35,6 +35,9 @@ const SignIn = () => {
         },
         body: JSON.stringify(data),
       });
+      setTimeout(() => {
+        reset()
+      }, 1000);
       if (response.status === 200) {
         const res = await response.json();
         SetResponse(res.message);
