@@ -70,7 +70,7 @@ const SignIn = () => {
           </>
         )}
       </h2>{" "}
-      <form onSubmit={handleSubmit(WhenSubmit)}>
+      <form onSubmit={handleSubmit(WhenSubmit)} autoComplete="off">
         <input
           {...register("username", {
             required: "This is important",
@@ -104,7 +104,7 @@ const SignIn = () => {
           Not a member ? <Link to="/Signup">Sign up</Link>
         </h2>
 
-        <input type="submit" value="Sign In" />
+        <input type="submit" value="Sign In" onClick={() => setTimeout(() => reset(), 1000)}/>
       </form>
     </div>
   );

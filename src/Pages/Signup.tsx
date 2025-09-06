@@ -16,6 +16,7 @@ const SignUp = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset
   } = useForm<Info>({
     defaultValues: {
       name: "",
@@ -41,12 +42,12 @@ const SignUp = () => {
       if (response.status === 201) {
         setTimeout(() => {
           navigate("/Signin");
-        }, 1000);
+        }, 2000);
         const rec = await response.json();
         SetResponse(rec.message);
         setTimeout(() => {
           SetResponse("");
-        }, 1200);
+        }, 2000);
       } else {
         const errorText = await response.json();
         SetResponse(errorText.message);
@@ -71,7 +72,7 @@ const SignUp = () => {
             </>
           )}
         </h2>{" "}
-        <form onSubmit={handleSubmit(WhenSubmit)}>
+        <form onSubmit={handleSubmit(WhenSubmit)} autoComplete="off">
           <input
             {...register("name", {
               required: false,
@@ -117,7 +118,7 @@ const SignUp = () => {
           )}
 
           <h2>Already a member ? <Link to="/Signin">Sign In</Link></h2>
-          <input type="submit" value="Create Account" />
+          <input type="submit" value="Create Account" onClick={() => setTimeout(() => reset(), 1000)}/>
           
         </form>
       </div>
