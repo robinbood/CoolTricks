@@ -1,6 +1,7 @@
 section {
     animation: Shawty;
     animation-timeline: view();
+    animation-range: 20% 60% cover;
 }
 
 @keyframes Shawty {
