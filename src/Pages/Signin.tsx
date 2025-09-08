@@ -64,7 +64,7 @@ const SignIn = () => {
 
   return (
     <div className="Signup-form">
-      <h2 className="heading">
+      <h2 className={response ? "response" : "heading"}>
         {response ? (
           response
         ) : (
