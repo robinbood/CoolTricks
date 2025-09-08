@@ -80,7 +80,6 @@ body {
   color: #1f2937;
   text-align: center;
   line-height: 1.3;
-  overflow-y: hidden;
   height: 40px;
   overflow: hidden;
   animation: both jion 0.5s;
@@ -88,7 +87,7 @@ body {
 
 @keyframes jion {
   from {
-    opacity: 0.3;
+    opacity: 0;
     transform: translateY(-100px);
   }
   to {
@@ -103,15 +102,15 @@ body {
   color: #1f2937;
   text-align: center;
   line-height: 1.3;
-  overflow-y: hidden;
   height: 40px;
   overflow: hidden;
   animation: both sick 0.5s;
+  
 }
 
 @keyframes sick {
   from {
-    opacity: 0.3;
+    opacity: 0;
     transform: translateY(-100px);
   }
   to {
@@ -120,7 +119,9 @@ body {
   }
 }
 
-
+.box {
+  overflow: hidden;
+}
 
 
 .heading span {

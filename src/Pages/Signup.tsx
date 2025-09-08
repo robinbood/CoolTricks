@@ -65,7 +65,8 @@ const SignUp = () => {
   };
   return (
       <div className="Signup-form">
-        <h2 className={response ? "response" : "heading"}>
+        <div className="box">
+          <h2 className={response ? "response" : "heading"}>
           {response ? (
             response
           ) : (
@@ -74,6 +75,7 @@ const SignUp = () => {
             </>
           )}
         </h2>{" "}
+        </div>
         <form onSubmit={handleSubmit(WhenSubmit)} autoComplete="off">
           <input
             {...register("name", {
