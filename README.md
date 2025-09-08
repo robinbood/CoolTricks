@@ -35,4 +35,4 @@ Welcome to my coding evolution! This repository documents my transformation into
 > "Every commit brings me closer to excellence."
 
 ---
-*Watch this space evolve as I level up my development skills!*
+*Should we addd zxcvbn  or would that be an overkill?*
