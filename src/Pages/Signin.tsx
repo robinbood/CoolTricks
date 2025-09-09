@@ -35,9 +35,6 @@ const SignIn = () => {
         },
         body: JSON.stringify(data),
       });
-      setTimeout(() => {
-        reset()
-      }, 1000);
       if (response.status === 200) {
         const res = await response.json();
         SetResponse(res.message);
@@ -114,7 +111,7 @@ const SignIn = () => {
           Not a member ? <Link to="/Signup">Sign up</Link>
         </h2>
 
-        <input type="submit" value="Sign In" />
+        <input type="submit" value="Sign In" onClick={() => {reset({username:"",password:""},{keepErrors:true})}}/>
       </form>
     </div>
   );

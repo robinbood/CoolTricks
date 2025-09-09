@@ -38,15 +38,7 @@ const SignUp = () => {
         },
         body: JSON.stringify(data),
       });
-      setTimeout(() => {
-        reset({
-          name:"",
-          username:"",
-          password:""
-        },{
-          keepErrors:true
-        })
-      }, 1000);
+      
       if (response.status === 201) {
         setTimeout(() => {
           navigate("/Signin");
@@ -128,7 +120,7 @@ const SignUp = () => {
           )}
 
           <h2>Already a member ? <Link to="/Signin">Sign In</Link></h2>
-          <input type="submit" value="Create Account"  />
+          <input type="submit" value="Create Account" onClick={() => {reset({name:"",username:"",password:""},{keepErrors:true})}} />
           
         </form>
       </div>
