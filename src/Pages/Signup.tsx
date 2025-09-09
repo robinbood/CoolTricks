@@ -39,7 +39,13 @@ const SignUp = () => {
         body: JSON.stringify(data),
       });
       setTimeout(() => {
-        reset()
+        reset({
+          name:"",
+          username:"",
+          password:""
+        },{
+          keepErrors:true
+        })
       }, 1000);
       if (response.status === 201) {
         setTimeout(() => {

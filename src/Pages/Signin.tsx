@@ -42,8 +42,13 @@ const SignIn = () => {
         const res = await response.json();
         SetResponse(res.message);
         setTimeout(() => {
-          reset();
-        });
+          reset({
+            username:"",
+            password:""
+          },{
+            keepErrors:true
+          });
+        },1000);
         setTimeout(() => {
           navigate("/api/home");
         }, 2000);
@@ -109,7 +114,7 @@ const SignIn = () => {
           Not a member ? <Link to="/Signup">Sign up</Link>
         </h2>
 
-        <input type="submit" value="Sign In" onClick={() => setTimeout(() => reset(), 1000)}/>
+        <input type="submit" value="Sign In" />
       </form>
     </div>
   );
