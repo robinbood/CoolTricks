@@ -7,18 +7,21 @@ Welcome to my coding evolution! This repository documents my transformation into
 ### Tech Stack 🛠️
 
 #### Backend Arsenal
+
 - Bun.js
 - PostgreSQL
 - RESTful APIs
 - Docker Containerization
 
 #### Frontend Tools
+
 - React
 - TypeScript
 - Modern CSS
 - State Management
 
 ### Goals 🎯
+
 - Master clean code principles
 - Build scalable applications
 - Implement efficient database design
@@ -26,6 +29,7 @@ Welcome to my coding evolution! This repository documents my transformation into
 - Optimize Docker configurations
 
 ### Progress Tracking
+
 - [ ] React + TypeScript Architecture
 - [ ] Bun.js Backend Development
 - [ ] PostgreSQL Database Design

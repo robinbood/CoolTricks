@@ -122,7 +122,7 @@ const SignUp = () => {
           )}
 
           <h2>Already a member ? <Link to="/Signin">Sign In</Link></h2>
-          <input type="submit" value="Create Account" />
+          <input type="submit" value="Create Account"  />
           
         </form>
       </div>
