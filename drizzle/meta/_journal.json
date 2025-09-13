@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1756296818585,
-      "tag": "0000_even_ronan",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1757762831390,
-      "tag": "0001_bitter_sentinels",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1757771406867,
-      "tag": "0002_needy_morg",
+      "when": 1757787852097,
+      "tag": "0000_stormy_karma",
       "breakpoints": true
     }
   ]

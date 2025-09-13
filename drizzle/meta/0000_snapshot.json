@@ -1,5 +1,5 @@
 {
-  "id": "084f3425-6998-4f41-a0a6-f375c4cdb702",
+  "id": "0d13bbb1-ce3b-459c-b88b-23f1ac96b3ea",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -25,6 +25,12 @@
             "cycle": false
           }
         },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
         "name": {
           "name": "name",
           "type": "varchar(255)",
@@ -42,12 +48,25 @@
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
+        },
+        "password_reset": {
+          "name": "password_reset",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        },
         "users_username_unique": {
           "name": "users_username_unique",
           "nullsNotDistinct": false,
