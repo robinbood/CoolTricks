@@ -15,6 +15,13 @@
       "when": 1757762831390,
       "tag": "0001_bitter_sentinels",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1757771406867,
+      "tag": "0002_needy_morg",
+      "breakpoints": true
     }
   ]
 }
