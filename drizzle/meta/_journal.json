@@ -8,6 +8,13 @@
       "when": 1756296818585,
       "tag": "0000_even_ronan",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1757762831390,
+      "tag": "0001_bitter_sentinels",
+      "breakpoints": true
     }
   ]
 }
