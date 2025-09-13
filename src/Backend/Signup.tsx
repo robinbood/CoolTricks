@@ -7,7 +7,7 @@ const client = new SQL(process.env.DATABASE_URL!);
 const db = drizzle({ client });
 
 const SignUp = async (req: Request) => {
-  const { name, username, password } = await req.json();
+  const {email, name, username, password } = await req.json();
 
   const exists = await db
     .select()
@@ -26,7 +26,7 @@ const SignUp = async (req: Request) => {
     memoryCost: 10,
     timeCost:5
   });
-  await db.insert(users).values({ name, username, password: newPassword });
+  await db.insert(users).values({ email,name, username, password: newPassword });
   return new Response(JSON.stringify({
     message:"User Created Successfully"
   }),{

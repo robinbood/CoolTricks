@@ -238,6 +238,33 @@ h2 {
   font-weight: 400;
   margin: 10px 0;
 }
+h2.password-reset{
+  text-align:right;
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 400;
+  margin: 10px 0;
+  justify-content: flex-end;
+}
+h2.password-reset:hover::after {
+  content: "YES";
+  font-size: large;
+  opacity: 0.78;
+  color: #462424;
+  animation: both bong 0.9s;
+  overflow: hidden;
+}
+
+@keyframes bong {
+   from {
+    opacity: 0;
+    transform: translateY(-100px),scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0),scale(1);
+  }
+}
 
 h2 a {
   color: #6366f1;

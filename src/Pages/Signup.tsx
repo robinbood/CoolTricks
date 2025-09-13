@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 
 interface Info {
+  email:string,
   name?: string;
   username: string;
   password: string;
@@ -19,6 +20,7 @@ const SignUp = () => {
     reset
   } = useForm<Info>({
     defaultValues: {
+      email:"",
       name: "",
       username: "",
       password: "",
@@ -76,6 +78,27 @@ const SignUp = () => {
         </div>
         <form onSubmit={handleSubmit(WhenSubmit)} autoComplete="off">
           <input
+            {...register("email", {
+              required: "This is important",
+              minLength: {
+                value: 12,
+                message: "Invalid",
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: "Invalid email format"
+              }
+            })}
+            placeholder="Email"
+            className={errors.email?.message ? "error" : ""}
+            
+          />
+
+          {errors.email?.message && (
+            <span className="error-message">{errors.email.message}</span>
+          )}
+          
+          <input
             {...register("name", {
               required: false,
               minLength: {
@@ -120,7 +143,7 @@ const SignUp = () => {
           )}
 
           <h2>Already a member ? <Link to="/Signin">Sign In</Link></h2>
-          <input type="submit" value="Create Account" onClick={() => {reset({name:"",username:"",password:""},{keepErrors:true})}} />
+          <input type="submit" value="Create Account" onClick={() => {reset({name:"",username:"",password:"",email:""},{keepErrors:true})}} />
           
         </form>
       </div>

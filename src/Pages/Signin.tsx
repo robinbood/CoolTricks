@@ -107,6 +107,10 @@ const SignIn = () => {
           <span className="error-message">{errors.password.message}</span>
         )}
 
+        <h2 className="password-reset">
+          <Link to="/forgot-password"> Forgot the password huh?</Link>
+        </h2>
+
         <h2>
           Not a member ? <Link to="/Signup">Sign up</Link>
         </h2>
