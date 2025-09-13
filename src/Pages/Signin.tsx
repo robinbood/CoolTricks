@@ -108,7 +108,7 @@ const SignIn = () => {
         )}
 
         <h2 className="password-reset">
-          <Link to="/forgot-password"> Forgot the password huh?</Link>
+          <Link to="/forgot-password" > Forgot the password huh?</Link>
         </h2>
 
         <h2>
