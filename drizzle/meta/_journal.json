@@ -8,6 +8,13 @@
       "when": 1757787852097,
       "tag": "0000_stormy_karma",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1757867073993,
+      "tag": "0001_thin_shocker",
+      "breakpoints": true
     }
   ]
 }
