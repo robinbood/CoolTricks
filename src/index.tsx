@@ -2,6 +2,7 @@ import { serve } from "bun";
 import index from "./index.html";
 import SignIn from "./Backend/Signin";
 import SignUp from "./Backend/Signup";
+import passWordReset from "./Backend/PasswordReset";
 
 const server = serve({
   routes: {
@@ -15,6 +16,11 @@ const server = serve({
     "/Signup" : {
       async POST(req) {
         return SignUp(req)
+      }
+    },
+    "/forgot-password":{
+      async POST(req) {
+        return passWordReset(req)
       }
     }
   },
