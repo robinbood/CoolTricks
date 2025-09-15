@@ -12,5 +12,5 @@ export const users = pgTable("users",{
 export const tokens = pgTable("tokens",{
     id:integer().primaryKey().generatedAlwaysAsIdentity(),
     token:varchar({length:256}),
-    user:integer().references(() => users.id)
+    user:integer().references(() => users.id,{onDelete:"cascade"}).unique()
 })
