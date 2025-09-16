@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import "../CSS/Form.css";
 
@@ -15,7 +15,7 @@ const PassReset = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    getValues,
   } = useForm<Info>({
     defaultValues: {
       email:""
@@ -26,14 +26,14 @@ const PassReset = () => {
 
   const WhenSubmit: SubmitHandler<Info> = async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/forgot-password", {
+      const response = await fetch("http://localhost:3000/forgot-pass", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify(data),
       });
-      if (response.status === 201) {
+      if (response.status === 200) {
         const res = await response.json();
         SetResponse(res.message);
         
@@ -42,7 +42,7 @@ const PassReset = () => {
         }, 2000);
         setTimeout(() => {
           SetResponse("");
-        });
+        },1200);
       } else {
         const res = await response.json();
         SetResponse(res.message);
@@ -92,7 +92,10 @@ const PassReset = () => {
 
     
 
-        <input type="submit" value="Send Token" onClick={() => {reset({email:""},{keepErrors:true})}}/>
+        <input type="submit" value="Send Token" onClick={() => {
+            console.log(getValues())
+        }
+        }/>
       </form>
     </div>
   );

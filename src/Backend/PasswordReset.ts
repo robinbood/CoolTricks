@@ -3,13 +3,12 @@ import { eq } from "drizzle-orm";
 import { SQL } from "bun";
 import { users, tokens } from "@/Schema/Schema";
 import generator from "@/Functionalities/Token";
-import { Message } from "node-mailjet";
 
 const client = new SQL(process.env.DATABASE_URL!);
 const db = drizzle({ client });
 
 const passWordReset = async (req: Request) => {
-  const [email] = await req.json();
+  const { email } = await req.json();
 
   const usero = await db.select().from(users).where(eq(users.email, email));
   if (!usero[0]) {
@@ -18,7 +17,7 @@ const passWordReset = async (req: Request) => {
         message: "Check your email for the code",
       }),
       {
-        status: 201,
+        status: 200,
       }
     );
   }
@@ -29,13 +28,17 @@ const passWordReset = async (req: Request) => {
     Authorization: `Basic ${info}`,
   });
 
-  await db.insert(tokens).values({ token:token1, user: usero[0].id }).onConflictDoUpdate({target:tokens.id,set:{
-    token:token1
-  }});
-  console.log(token1);
-  
+  await db
+    .insert(tokens)
+    .values({ token: token1, user: usero[0].id })
+    .onConflictDoUpdate({
+      target: tokens.id,
+      set: {
+        token: token1,
+      },
+    });
 
-   await fetch("https://api.mailjet.com/v3.1/send", {
+  await fetch("https://api.mailjet.com/v3.1/send", {
     method: "POST",
     headers: authHeaders,
     body: JSON.stringify({
@@ -44,8 +47,7 @@ const passWordReset = async (req: Request) => {
           From: { Email: "tensorcensor@gmail.com", Name: "Hash" },
           To: [{ Email: email, Name: usero[0].name }],
           Subject: "Password reset request",
-          TextPart: "Your token is:",
-          token1,
+          TextPart: `Your token is ${token1}`
         },
       ],
     }),
@@ -55,7 +57,7 @@ const passWordReset = async (req: Request) => {
       message: "Check your email for the code",
     }),
     {
-      status: 201,
+      status: 200,
     }
   );
 };

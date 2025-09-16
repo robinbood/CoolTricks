@@ -14,7 +14,7 @@ export function App() {
         <Route path="/" element={<Main/>}/>
         <Route path="/Signin" element={<SignIn/>}/>
         <Route path="/Signup" element={<SignUp/>}/>
-        <Route path="/forgot-password" element={<PassReset/>}/>
+        <Route path="/forgot-pass" element={<PassReset/>}/>
         <Route path="/home" element={<Navar/>}>
           <Route index element={<Home/>}/>
           <Route/>

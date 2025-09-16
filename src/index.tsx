@@ -18,7 +18,7 @@ const server = serve({
         return SignUp(req)
       }
     },
-    "/forgot-password":{
+    "/forgot-pass":{
       async POST(req) {
         return passWordReset(req)
       }

@@ -16,8 +16,7 @@ const SignUp = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit,
-    reset
+    handleSubmit
   } = useForm<Info>({
     defaultValues: {
       email:"",
@@ -143,7 +142,7 @@ const SignUp = () => {
           )}
 
           <h2>Already a member ? <Link to="/Signin">Sign In</Link></h2>
-          <input type="submit" value="Create Account" onClick={() => {reset({name:"",username:"",password:"",email:""},{keepErrors:true})}} />
+          <input type="submit" value="Create Account"  />
           
         </form>
       </div>

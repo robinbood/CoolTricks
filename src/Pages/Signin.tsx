@@ -108,14 +108,14 @@ const SignIn = () => {
         )}
 
         <h2 className="password-reset">
-          <Link to="/forgot-password" > Forgot the password huh?</Link>
+          <Link to="/forgot-pass" > Forgot the password huh?</Link>
         </h2>
 
         <h2>
           Not a member ? <Link to="/Signup">Sign up</Link>
         </h2>
 
-        <input type="submit" value="Sign In" onClick={() => {reset({username:"",password:""},{keepErrors:true})}}/>
+        <input type="submit" value="Sign In" />
       </form>
     </div>
   );
