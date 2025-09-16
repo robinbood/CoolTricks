@@ -42,9 +42,9 @@ const passWordReset = async (req: Request) => {
     method: "POST",
     headers: authHeaders,
     body: JSON.stringify({
-      Message: [
+      Messages: [
         {
-          From: { Email: "tensorcensor@gmail.com", Name: "Hash" },
+          From: { Email: "tensorcensor@gmail.com", Name: "Host" },
           To: [{ Email: email, Name: usero[0].name }],
           Subject: "Password reset request",
           TextPart: `Your token is ${token1}`
