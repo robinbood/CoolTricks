@@ -22,26 +22,30 @@ const passWordReset = async (req: Request) => {
       }
     );
   }
-  const token = generator();
+  const token1 = generator();
   const info = btoa(`${process.env.MAILJET_API}:${process.env.MAILJET_SECRET}`);
   const authHeaders = new Headers({
     "Content-type": "application/json",
     Authorization: `Basic ${info}`,
   });
 
-  await db.insert(tokens).values({ token, user: usero[0].id });
+  await db.insert(tokens).values({ token:token1, user: usero[0].id }).onConflictDoUpdate({target:tokens.id,set:{
+    token:token1
+  }});
+  console.log(token1);
+  
 
-  const response = await fetch("https://api.mailjet.com/v3.1/send", {
+   await fetch("https://api.mailjet.com/v3.1/send", {
     method: "POST",
     headers: authHeaders,
     body: JSON.stringify({
       Message: [
         {
           From: { Email: "tensorcensor@gmail.com", Name: "Hash" },
-          To: { Email: email, Name: usero[0].name },
+          To: [{ Email: email, Name: usero[0].name }],
           Subject: "Password reset request",
           TextPart: "Your token is:",
-          token,
+          token1,
         },
       ],
     }),
