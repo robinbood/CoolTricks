@@ -32,7 +32,7 @@ const passWordReset = async (req: Request) => {
     .insert(tokens)
     .values({ token: token1, user: usero[0].id })
     .onConflictDoUpdate({
-      target: tokens.id,
+      target: tokens.user,
       set: {
         token: token1,
       },
