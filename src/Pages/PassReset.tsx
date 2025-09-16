@@ -8,7 +8,7 @@ interface Info {
   email:string
 }
 
-const SignIn = () => {
+const PassReset = () => {
   const [response, SetResponse] = useState<string>("");
 
   const {
@@ -73,7 +73,7 @@ const SignIn = () => {
             {...register("email", {
               required: "This is important",
               minLength: {
-                value: 12,
+                value: 1,
                 message: "Invalid",
               },
               pattern: {
@@ -90,14 +90,12 @@ const SignIn = () => {
             <span className="error-message">{errors.email.message}</span>
           )}
 
-        <h2>
-          <Link to="/Signup">Send Token</Link>
-        </h2>
+    
 
-        <input type="submit" value="Sign In" onClick={() => {reset({email:""},{keepErrors:true})}}/>
+        <input type="submit" value="Send Token" onClick={() => {reset({email:""},{keepErrors:true})}}/>
       </form>
     </div>
   );
 };
 
-export default SignIn;
+export default PassReset;

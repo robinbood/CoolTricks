@@ -81,7 +81,7 @@ const SignUp = () => {
             {...register("email", {
               required: "This is important",
               minLength: {
-                value: 12,
+                value: 1,
                 message: "Invalid",
               },
               pattern: {
