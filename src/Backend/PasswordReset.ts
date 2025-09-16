@@ -14,7 +14,7 @@ const passWordReset = async (req: Request) => {
   if (!usero[0]) {
     return new Response(
       JSON.stringify({
-        message: "Check your email for the code",
+        message: "Check your email for the coode",
       }),
       {
         status: 200,
