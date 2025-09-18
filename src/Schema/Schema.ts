@@ -16,7 +16,7 @@ export const usersRelations = relations(users,({one}) => ({
 
 export const tokens = pgTable("tokens",{
     id:integer().primaryKey().generatedAlwaysAsIdentity(),
-    token:integer(),
+    token:integer().unique(),
     user:integer().references(() => users.id,{onDelete:"cascade"}).unique()
 })
 

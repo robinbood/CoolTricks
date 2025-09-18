@@ -27,16 +27,11 @@ const passWordReset = async (req: Request) => {
     "Content-type": "application/json",
     Authorization: `Basic ${info}`,
   });
-
+   
+  await db.delete(tokens).where(eq(tokens.user, usero[0].id))
   await db
     .insert(tokens)
     .values({ token: token1, user: usero[0].id })
-    .onConflictDoUpdate({
-      target: [tokens.user],
-      set: {
-        token: token1,
-      },
-    });
 
   await fetch("https://api.mailjet.com/v3.1/send", {
     method: "POST",
