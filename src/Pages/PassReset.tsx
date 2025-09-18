@@ -92,10 +92,7 @@ const PassReset = () => {
 
     
 
-        <input type="submit" value="Send Token" onClick={() => {
-            console.log(getValues())
-        }
-        }/>
+        <input type="submit" value="Send Token" />
       </form>
     </div>
   );
