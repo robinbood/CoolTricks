@@ -3,6 +3,7 @@ import index from "./index.html";
 import SignIn from "./Backend/Signin";
 import SignUp from "./Backend/Signup";
 import passWordReset from "./Backend/PasswordReset";
+import TokenVerify from "./Backend/TokenVerify";
 
 const server = serve({
   routes: {
@@ -21,6 +22,11 @@ const server = serve({
     "/forgot-pass":{
       async POST(req) {
         return passWordReset(req)
+      }
+    },
+    '/token-lookup': {
+      async POST(req) {
+        return TokenVerify(req)
       }
     }
   },

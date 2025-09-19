@@ -46,7 +46,7 @@ const SignIn = async (req: Request) => {
     {
       status: 200,
       headers: {
-        "Set-Cookie": `sessionId=${key}; HttpOnly; Secure; SameSite=strict; Path=/;`,
+        "Set-Cookie": `sessionId=${key}; HttpOnly; Secure; SameSite=Lax; Path=/;`,
       },
     }
   );
