@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { data, Link, useNavigate } from "react-router";
 import { useState } from "react";
 import "../CSS/Form.css";
 
@@ -17,6 +17,7 @@ const SignIn = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    
   } = useForm<Info>({
     defaultValues: {
       username: "",
@@ -112,7 +113,7 @@ const SignIn = () => {
         </h2>
 
         <h2>
-          Not a member ? <Link to="/Signup">Sign up</Link>
+          Not a member ? <Link to="/Signup" >Sign up</Link>
         </h2>
 
         <input type="submit" value="Sign In" />
