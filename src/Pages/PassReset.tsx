@@ -38,7 +38,7 @@ const PassReset = () => {
         SetResponse(res.message);
         
         setTimeout(() => {
-          navigate("/token-verification");
+          navigate("/token-lookup");
         }, 2000);
         setTimeout(() => {
           SetResponse("");
