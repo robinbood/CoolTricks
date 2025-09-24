@@ -9,12 +9,15 @@
     "start": "NODE_ENV=production bun src/index.tsx"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^4.0.2",
+    "@stripe/stripe-js": "^7.9.0",
     "drizzle-orm": "^0.44.5",
     "pg": "^8.16.3",
     "react": "^19",
     "react-dom": "^19",
     "react-hook-form": "^7.62.0",
-    "react-router": "^7.8.1"
+    "react-router": "^7.8.1",
+    "stripe": "^18.5.0"
   },
   "devDependencies": {
     "@types/bun": "latest",

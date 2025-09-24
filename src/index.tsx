@@ -4,6 +4,7 @@ import SignIn from "./Backend/Signin";
 import SignUp from "./Backend/Signup";
 import passWordReset from "./Backend/PasswordReset";
 import TokenVerify from "./Backend/TokenVerify";
+import CreatePaymentIntent from "./Backend/create-payment-intent";
 
 const server = serve({
   routes: {
@@ -27,6 +28,11 @@ const server = serve({
     '/token-lookup': {
       async POST(req) {
         return TokenVerify(req)
+      }
+    },
+    "/create-payment-intent": {
+      async POST(req) {
+        return CreatePaymentIntent(req)
       }
     }
   },

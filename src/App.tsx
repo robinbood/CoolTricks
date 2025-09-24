@@ -7,6 +7,7 @@ import Navar from "./Pages/Navbar";
 import Home from "./Pages/Home";
 import PassReset from "./Pages/PassReset";
 import TokenLook from "./Pages/TokenLookup";
+import Payment from "./Pages/Payment";
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
         <Route path="/Signin" element={<SignIn/>}/>
         <Route path="/Signup" element={<SignUp/>}/>
         <Route path="/forgot-pass" element={<PassReset/>}/>
+        <Route path="/subscribe" element={<Payment/>}/>
         <Route path="token-lookup" element={<TokenLook/>} />
         <Route path="/home" element={<Navar/>}>
           <Route index element={<Home/>}/>
