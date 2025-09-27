@@ -14,8 +14,7 @@ export default function CheckoutForm() {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
+      
       return;
     }
 
@@ -24,9 +23,10 @@ export default function CheckoutForm() {
     const {error,paymentIntent} = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
+        
         return_url: `${window.location.origin}/completion`,
       },
+      redirect:"if_required"
     }) as { error?: StripeError; paymentIntent?: PaymentIntent };
 
     if (error) {

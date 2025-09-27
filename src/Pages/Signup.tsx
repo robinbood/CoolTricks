@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
+import zxcvbn from "zxcvbn";
 
 interface Info {
   email:string,
@@ -133,6 +134,10 @@ const SignUp = () => {
                 value: 8,
                 message: "Weak password",
               },
+              validate: (value) => {
+                const result = zxcvbn(value);
+                return result.score >= 3 || "Password is too weak";
+              }
             })}
             placeholder="Password"
             className={errors.password?.message ? "error" : ""}
