@@ -39,4 +39,4 @@ Welcome to my coding evolution! This repository documents my transformation into
 > "Every commit brings me closer to excellence."
 
 ---
-*Should we addd zxcvbn  or would that be an overkill? we will add it anyway*
+*My first attempt at documentation*
