@@ -9,15 +9,16 @@ const db = drizzle({ client });
 const store = new RedisClient();
 
 const SignOut = async (req: Request) => {
+  // get the cookie
   const coookie = req.headers.get("cookie");
-
+// get the session id from the fookie
   const sessionId = coookie?.split("=")[1]?.split(";")[0];
   if (!sessionId) {
     return Response.redirect("/api/home");
   }
 
   const newCookie =
-    "sessionId= ; HttpOnly; sameSite=strict ; Path=/ , MaxAge=0";
+    "sessionId= ; HttpOnly; sameSite=Lax ; Path=/ , MaxAge=0";
 
   try {
     const exists = await store.exists(sessionId);
@@ -36,9 +37,11 @@ const SignOut = async (req: Request) => {
       return new Response(
         JSON.stringify({
           message: "Come back any time",
+          Name:name
         }),
         {
           headers: {
+            // delete the coookie
             "Set-Cookie": newCookie,
             "Content-type": "application/json",
           },

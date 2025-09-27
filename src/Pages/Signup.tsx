@@ -130,13 +130,10 @@ const SignUp = () => {
           <input
             {...register("password", {
               required: "This is important",
-              minLength: {
-                value: 8,
-                message: "Weak password",
-              },
+              
               validate: (value) => {
                 const result = zxcvbn(value);
-                return result.score >= 3 || "Password is too weak";
+                return result.score >= 3 || result.feedback.suggestions;
               }
             })}
             placeholder="Password"

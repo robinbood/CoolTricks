@@ -5,9 +5,10 @@ import { users, tokens } from "@/Schema/Schema";
 
 const client = new SQL(process.env.DATABASE_URL!);
 const db = drizzle(client, { schema: { users, tokens } });
-
+// this is for password resset functionality
 const TokenVerify = async (req: Request) => {
   const { token, newPass } = await req.json();
+  // you can do them separately with sending state via react router to a different page 
 
   const result = await db.query.tokens.findFirst({
     where: eq(tokens.token, token),
@@ -27,6 +28,7 @@ const TokenVerify = async (req: Request) => {
     memoryCost: 10,
     timeCost: 5,
   });
+  // just like the name says ,,it;s a transition made up of two queries
   await db.transaction(async (tx) => {
     await tx
       .update(users)

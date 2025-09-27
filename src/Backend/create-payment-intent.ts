@@ -4,7 +4,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET,{
 
 const CreatePaymentIntent = async (req: Request) => {
     try {
-        const paymentIntent = await stripe.paymentIntents.create({
+        // creating  payment intent whihch is gonna be pre-set..the currency is in cents
+        const paymentIntent = await stripe.paymentIntent.create({
             currency:"eur",
             amount:10,
             automatic_payment_methods:{
