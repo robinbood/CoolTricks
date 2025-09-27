@@ -1,8 +1,11 @@
 import "../CSS/Main.css";
+
 const Main = () => {
   return (
   <div>
-        <nav></nav>
+        <nav>
+
+        </nav>
   </div>
 )}
 
