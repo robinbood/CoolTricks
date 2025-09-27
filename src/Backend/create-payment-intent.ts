@@ -5,7 +5,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET,{
 const CreatePaymentIntent = async (req: Request) => {
     try {
         const paymentIntent = await stripe.paymentIntents.create({
-            currenncy:"eur",
+            currency:"eur",
             amount:10,
             automatic_payment_methods:{
                 enabled:true

@@ -1,7 +1,7 @@
 import { RedisClient } from "bun";
 const store = new RedisClient();
 
-
+// authenticate a user  to see if his session id is still valid 
 const Authenticate = async (req: Request) => {
     const cookieHeader = req.headers.get("cookie")
     const hasCookie = cookieHeader?.startsWith("sessionId=")
@@ -12,7 +12,7 @@ const Authenticate = async (req: Request) => {
     if (!key) {
         return Response.redirect("./Signin")
     }
-
+    // get the keys from redis cache
     try {
         const [userid] = await store.hmget(key,[
             "userId"
