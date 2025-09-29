@@ -42,10 +42,13 @@ const passWordReset = async (req: Request) => {
     body: JSON.stringify({
       Messages: [
         {
+          // Name field can have any name and not just the one set on mailjet
           From: { Email: "tensorcensor@gmail.com", Name: "Host" },
+
           To: [{ Email: email, Name: usero[0].name }],
           Subject: "Password reset request",
           TextPart: `Your token is ${token1}`
+          // you can have HTMLPart here to style those emails like adobe does 
         },
       ],
     }),
@@ -55,6 +58,8 @@ const passWordReset = async (req: Request) => {
       message: "Check your email for the code",
     }),
     {
+      // we could have 201 status code here but we gottta hide it from attackers from ever knowing it
+      
       status: 200,
     }
   );

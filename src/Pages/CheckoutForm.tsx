@@ -23,7 +23,7 @@ export default function CheckoutForm() {
     const {error,paymentIntent} = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        
+        // this runs if the payment was successful
         return_url: `${window.location.origin}/completion`,
       },
       redirect:"if_required"
@@ -32,6 +32,7 @@ export default function CheckoutForm() {
     if (error) {
       setMessage(error.message || "Payment failed");
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
+      // xwe should have defined this in a better to incrase a micromilisecond response time
       setMessage("payment status : " + paymentIntent.status + ":taco:");
     } else {
       setMessage("An unexpected error occurred.");

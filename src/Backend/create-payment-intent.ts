@@ -13,6 +13,8 @@ const CreatePaymentIntent = async (req: Request) => {
             }
         })
         return new Response (JSON.stringify({
+            // client_secret is a predefined field btw
+            
             clientSecret:paymentIntent.client_secret
         }))
     } catch (error : unknown) {
