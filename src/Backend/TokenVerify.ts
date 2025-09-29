@@ -32,6 +32,7 @@ const TokenVerify = async (req: Request) => {
   await db.transaction(async (tx) => {
     await tx
       .update(users)
+      // should have used this way of declaration with tokens but i guess we gotta FAFO
       .set({ password: hashedpass })
       .where(eq(users.id, user));
 
