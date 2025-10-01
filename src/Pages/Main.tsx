@@ -25,9 +25,8 @@ const Main: React.FC<LandingPageProps> = ({
     <>
       
 
-      {/* Main hero: Flex for centering */}
-      <main className="hero">
-        <section className="heroCard">
+      
+       
           <h1 className="heroHeading">
             Welcome to <span>{appName}</span>
           </h1>
@@ -41,8 +40,8 @@ const Main: React.FC<LandingPageProps> = ({
           >
             Get Started
           </button>
-        </section>
-      </main>
+        
+    
     </>
   );
 };
