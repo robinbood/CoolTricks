@@ -15,7 +15,7 @@ const PassReset = () => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
+    
   } = useForm<Info>({
     defaultValues: {
       email:""

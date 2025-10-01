@@ -7,6 +7,7 @@ import TokenVerify from "./Backend/TokenVerify";
 import CreatePaymentIntent from "./Backend/create-payment-intent";
 
 const server = serve({
+  port: 3000,
   routes: {
     // Serve index.html for all unmatched routes.
     "/*": index,

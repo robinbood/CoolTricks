@@ -1,0 +1,188 @@
+.header {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.loginBtn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+.loginBtn:hover {
+  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.loginBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.loginBtn:active {
+  transform: translateY(0);
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+}
+
+.heroCard {
+  max-width: 580px;
+  width: 100%;
+  padding: 60px 40px;
+  background: white;
+  border-radius: 16px;
+  text-align: center;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.heroCard:hover {
+  transform: translate3d(-30px, -20px, 80px) ;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 3px 10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  width: 115%;
+}
+
+/* Gradient bar: Pseudo-element */
+.heroCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.heroHeading {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.heroHeading span {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.heroDesc {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaBtn {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 16px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.ctaBtn:hover {
+  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.ctaBtn:focus {
+  outline: none;
+  box-shadow:
+    0 4px 12px rgba(99, 102, 241, 0.3),
+    0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Responsive: Mobile-First */
+@media (max-width: 480px) {
+  .header {
+    top: 10px;
+    right: 10px;
+  }
+
+  .loginBtn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .hero {
+    height: auto;
+    padding: 10px;
+  }
+
+  .heroCard {
+    padding: 40px 25px;
+    margin: 20px;
+  }
+
+  .heroCard:hover {
+    transform: translate3d(0, -5px, 10px);
+    width: 100%;
+  }
+
+  .heroHeading {
+    font-size: 24px;
+  }
+
+  .heroDesc {
+    font-size: 16px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .heroCard,
+  .loginBtn,
+  .ctaBtn {
+    transition: none;
+  }
+
+  .heroCard:hover,
+  .loginBtn:hover,
+  .ctaBtn:hover {
+    transform: none;
+  }
+}
