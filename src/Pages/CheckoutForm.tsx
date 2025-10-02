@@ -13,6 +13,7 @@ export default function CheckoutForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // stripe and elements are the dependancies that get initiated ,this line should be here
     if (!stripe || !elements) {
       
       return;
@@ -26,7 +27,9 @@ export default function CheckoutForm() {
         // this runs if the payment was successful
         return_url: `${window.location.origin}/completion`,
       },
+      // so this is needed for the function to run properly
       redirect:"if_required"
+      // typoes aren't really needed cuz bun runtime already does this type stuff pretty elegantly
     }) as { error?: StripeError; paymentIntent?: PaymentIntent };
 
     if (error) {

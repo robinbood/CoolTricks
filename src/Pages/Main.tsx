@@ -22,27 +22,9 @@ const Main: React.FC<LandingPageProps> = ({
   };
 
   return (
-    <>
-      
-
-      
-       
-          <h1 className="heroHeading">
-            Welcome to <span>{appName}</span>
-          </h1>
-          <p className="heroDesc">
-            Streamline your workflows with elegant, secure tools. Get started in seconds.
-          </p>
-          <button
-            className="ctaBtn"
-            onClick={handleGetStarted}
-            aria-label="Get Started"
-          >
-            Get Started
-          </button>
-        
-    
-    </>
-  );
+    // i will create  a janky UI for it later someday
+   <>
+   </> 
+  )
 };
 export default Main;
