@@ -39,4 +39,4 @@ Welcome to my coding evolution! This repository documents my transformation into
 > "Every commit brings me closer to excellence."
 
 ---
-*My first attempt at documentation*
+*My first attempt at documentation...also i had the plans to make it a dating website noting more complex than what i know  but the thing about storing images is i have to use AWS S3 and i'm broke af*
