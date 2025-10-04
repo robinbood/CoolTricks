@@ -31,11 +31,13 @@ const PassReset = () => {
         headers: {
           "Content-type": "application/json",
         },
+        // so it sends data which is the email which returns what is a shitty token.you should be using something that is a tiny token but itty bit more secure
         body: JSON.stringify(data),
       });
       if (response.status === 200) {
         const res = await response.json();
         SetResponse(res.message);
+        // you should be using view transitions if you want something like gmail sign-in and then make the server send the response and cache it in redis
         
         setTimeout(() => {
           navigate("/token-lookup");

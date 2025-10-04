@@ -20,7 +20,7 @@ const Navar = () => {
         })}
     </nav>
     <main className="main-content">
-      {/* the most important part of the code,,everything gets rendered below the navbar */}
+      {/* the most important part of the code,,everything gets rendered below the navbar....Hence you need the Outlet function */}
       <Outlet/>
     </main>
     </>

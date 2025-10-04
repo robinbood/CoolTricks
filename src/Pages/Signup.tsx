@@ -130,7 +130,7 @@ const SignUp = () => {
           <input
             {...register("password", {
               required: "This is important",
-              
+              // added zxcvbn here  it is by far the best password checker i have seen..the score 3 and above is okat but if you want more precise errors you can get those other fields it offers so yuou can guyide the user better..personally for me those extra fieldes don't realy matter
               validate: (value) => {
                 const result = zxcvbn(value);
                 return result.score >= 3 || result.feedback.suggestions;

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
-
+// create interface
 interface Info {
   token:string,
   password:string,
@@ -11,13 +11,14 @@ interface Info {
 
 const TokenLook = () => {
     const [response, SetResponse] = useState<string>("");
-
+// using react-hook-form here for obvious reasons
   const {
     register,
     formState: { errors },
     handleSubmit,
     watch
   } = useForm<Info>({
+    // is this important ? no but it looks cool
     defaultValues: {
       token: "",
       password: ""
@@ -25,9 +26,11 @@ const TokenLook = () => {
   });
 
   const navigate = useNavigate();
+  // watching a field means it's being controlled and causing re=renders
   const match = watch("password")
 
   const WhenSubmit: SubmitHandler<Info> = async (data: Info) => {
+    // like i said you can pass the data of token onto a new page and then get a new pass from the user which also looks elegeant but requires an extra page
     const {token,newPass} = data
     
     try {
