@@ -22,7 +22,7 @@ const Main: React.FC = () => {
   return (
     <div className="prod-landing">
       {/* Navigation - Top Login */}
-      <nav className={`prod-nav ${isVisible ? 'prod-nav-visible' : ''}`}>
+      <nav className="prod-nav-visible ">
         <div className="prod-nav-container">
           <div className="prod-logo">
             <span className="prod-logo-icon">⚡</span>

@@ -683,7 +683,7 @@ body {
   border-radius: 20px;
   text-align: center;
   border: 1px solid #e2e8f0;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
 }
@@ -697,7 +697,7 @@ body {
   height: 4px;
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease-in-out;
 }
 
 .prod-feature-card:hover::before {
