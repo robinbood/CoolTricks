@@ -5,6 +5,7 @@ import SignUp from "./Backend/Signup";
 import passWordReset from "./Backend/PasswordReset";
 import TokenVerify from "./Backend/TokenVerify";
 import CreatePaymentIntent from "./Backend/create-payment-intent";
+import Webhook from "./Backend/Webhook";
 
 const server = serve({
   port: 3000,
@@ -34,6 +35,11 @@ const server = serve({
     "/create-payment-intent": {
       async POST(req) {
         return CreatePaymentIntent(req)
+      }
+    },
+    "/webhook": {
+      async POST(req) {
+        return Webhook(req)
       }
     }
   },

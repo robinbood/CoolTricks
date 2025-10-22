@@ -18,6 +18,7 @@ const Navar = () => {
                 <NavLink key={item.path} to={item.path} className={({isActive}) => isActive ? "nav-link active" : "nav-link"} >{item.label}</NavLink>
             )
         })}
+        
     </nav>
     <main className="main-content">
       {/* the most important part of the code,,everything gets rendered below the navbar....Hence you need the Outlet function */}
