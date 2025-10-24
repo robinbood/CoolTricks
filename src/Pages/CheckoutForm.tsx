@@ -33,7 +33,11 @@ export default function CheckoutForm() {
     }) as { error?: StripeError; paymentIntent?: PaymentIntent };
 
     if (error) {
-      setMessage(error.message || "Payment failed");
+      if (error.type === "card_error" || error.type === "validation_error") {
+        setMessage(error.message || "An error occurred with your card.");
+      } else {
+        setMessage("An unexpected error occurred.");
+      }
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
       // xwe should have defined this in a better to incrase a micromilisecond response time
       setMessage("payment status : " + paymentIntent.status + ":taco:");

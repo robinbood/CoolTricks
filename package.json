@@ -22,10 +22,12 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/node": "^24.9.1",
     "@types/pg": "^8.15.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/zxcvbn": "^4.4.5",
-    "drizzle-kit": "^0.31.4"
+    "drizzle-kit": "^0.31.4",
+    "typescript": "^5.9.3"
   }
 }
