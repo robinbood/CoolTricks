@@ -10,7 +10,7 @@ const products = {
     }
 }
 
-const CreatePaymentIntent = async (req: Request) => {
+const CreatePaymentIntent = async (req: Request, userId: number) => {
     try {
         const { productId, idempotencyKey } = await req.json();
         const product = products[productId as keyof typeof products];
