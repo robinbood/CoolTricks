@@ -1,5 +1,5 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import type { StripeError, PaymentIntent } from "@stripe/stripe-js";
 
@@ -10,7 +10,7 @@ export default function CheckoutForm() {
   const [message, setMessage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // stripe and elements are the dependancies that get initiated ,this line should be here
@@ -40,13 +40,13 @@ export default function CheckoutForm() {
       }
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
       // xwe should have defined this in a better to incrase a micromilisecond response time
-      setMessage("payment status : " + paymentIntent.status + ":taco:");
+      setMessage("Payment successful! 🎉");
     } else {
       setMessage("An unexpected error occurred.");
     }
 
     setIsProcessing(false);
-  };
+  }, [stripe, elements]);
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>

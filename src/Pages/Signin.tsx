@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { data, Link, useNavigate } from "react-router";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../CSS/Form.css";
+import { useFormSubmit } from "../Functionalities/useFormSubmit";
 
 interface Info {
   username: string;
@@ -10,7 +10,7 @@ interface Info {
 }
 
 const SignIn = () => {
-  const [response, SetResponse] = useState<string>("");
+  const { response, handleSubmit: handleFormSubmit } = useFormSubmit<Info>({ url: "/Signin", redirectUrl: "/home" });
 
   const {
     register,
@@ -25,44 +25,9 @@ const SignIn = () => {
     },
   });
 
-  const navigate = useNavigate();
-
-  const WhenSubmit: SubmitHandler<Info> = async (data) => {
-    try {
-      const response = await fetch("http://localhost:3000/Signin", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.status === 200) {
-        const res = await response.json();
-        SetResponse(res.message);
-        setTimeout(() => {
-          reset({
-            username:"",
-            password:""
-          },{
-            keepErrors:true
-          });
-        },1000);
-        setTimeout(() => {
-          navigate("/api/home");
-        }, 2000);
-        setTimeout(() => {
-          SetResponse("");
-        });
-      } else {
-        const res = await response.json();
-        SetResponse(res.message);
-        setTimeout(() => {
-          SetResponse("");
-        }, 2000);
-      }
-    } catch (error: unknown) {
-      console.log("Unknown error:", error);
-    }
+  const WhenSubmit: SubmitHandler<Info> = (data) => {
+    handleFormSubmit(data);
+    reset();
   };
 
   return (

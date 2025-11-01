@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import zxcvbn from "zxcvbn";
+import { useFormSubmit } from "../Functionalities/useFormSubmit";
 
 interface Info {
   email:string,
@@ -12,7 +12,7 @@ interface Info {
 }
 
 const SignUp = () => {
-  const [response, SetResponse] = useState<string>("");
+  const { response, handleSubmit: handleFormSubmit } = useFormSubmit<Info>({ url: "/Signup", redirectUrl: "/Signin" });
 
   const {
     register,
@@ -27,41 +27,8 @@ const SignUp = () => {
     },
   });
 
-  const navigate = useNavigate();
-
-  const WhenSubmit: SubmitHandler<Info> = async (data) => {
-    console.log(data);
-    
-    try {
-      const response = await fetch("http://localhost:3000/Signup", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      
-      if (response.status === 201) {
-        setTimeout(() => {
-          navigate("/Signin");
-        }, 2000);
-        const rec = await response.json();
-        SetResponse(rec.message);
-        setTimeout(() => {
-          SetResponse("");
-        }, 2000);
-      } else {
-        const errorText = await response.json();
-        SetResponse(errorText.message);
-        setTimeout(() => {
-          SetResponse("");
-        }, 2000);
-      }
-    } catch (error: unknown) {
-      console.log("Network Error: ", error);
-    }
-
-    
+  const WhenSubmit: SubmitHandler<Info> = (data) => {
+    handleFormSubmit(data);
   };
   return (
       <div className="Signup-form">
@@ -150,5 +117,7 @@ const SignUp = () => {
       </div>
     );
 };
+
+export default SignUp;
 
 export default SignUp;

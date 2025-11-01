@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
-import { useState } from "react";
+import { useFormSubmit } from "../Functionalities/useFormSubmit";
+
 // create interface
 interface Info {
   token:string,
@@ -10,7 +10,8 @@ interface Info {
 }
 
 const TokenLook = () => {
-    const [response, SetResponse] = useState<string>("");
+  const { response, handleSubmit: handleFormSubmit } = useFormSubmit<Info>({ url: "/token-lookup", redirectUrl: "/Signin" });
+
 // using react-hook-form here for obvious reasons
   const {
     register,
@@ -25,44 +26,11 @@ const TokenLook = () => {
     },
   });
 
-  const navigate = useNavigate();
   // watching a field means it's being controlled and causing re=renders
   const match = watch("password")
 
-  const WhenSubmit: SubmitHandler<Info> = async (data: Info) => {
-    // like i said you can pass the data of token onto a new page and then get a new pass from the user which also looks elegeant but requires an extra page
-    const {token,newPass} = data
-    
-    try {
-      const response = await fetch("http://localhost:3000/token-lookup", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ token, newPass }),
-      });
-      
-      if (response.status === 201) {
-        setTimeout(() => {
-          navigate("/Signin");
-        }, 2000);
-        const rec = await response.json();
-        SetResponse(rec.message);
-        setTimeout(() => {
-          SetResponse("");
-        }, 2000);
-      } else {
-        const errorText = await response.json();
-        SetResponse(errorText.message);
-        setTimeout(() => {
-          SetResponse("");
-        }, 2000);
-      }
-    } catch (error: unknown) {
-      console.log("Network Error: ", error);
-    }
-
-    
+  const WhenSubmit: SubmitHandler<Info> = (data: Info) => {
+    handleFormSubmit(data);
   };
   return (
       <div className="Signup-form">
@@ -130,5 +98,7 @@ const TokenLook = () => {
       </div>
     );
 };
+
+export default TokenLook;
 
 export default TokenLook;

@@ -1,15 +1,14 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { useState } from "react";
 import "../CSS/Form.css";
+import { useFormSubmit } from "../Functionalities/useFormSubmit";
 
 interface Info {
   email:string
 }
 
 const PassReset = () => {
-  const [response, SetResponse] = useState<string>("");
+  const { response, handleSubmit: handleFormSubmit } = useFormSubmit<Info>({ url: "/forgot-pass", redirectUrl: "/token-lookup" });
 
   const {
     register,
@@ -22,39 +21,8 @@ const PassReset = () => {
     },
   });
 
-  const navigate = useNavigate();
-
-  const WhenSubmit: SubmitHandler<Info> = async (data) => {
-    try {
-      const response = await fetch("http://localhost:3000/forgot-pass", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        // so it sends data which is the email which returns what is a shitty token.you should be using something that is a tiny token but itty bit more secure
-        body: JSON.stringify(data),
-      });
-      if (response.status === 200) {
-        const res = await response.json();
-        SetResponse(res.message);
-        // you should be using view transitions if you want something like gmail sign-in and then make the server send the response and cache it in redis
-        
-        setTimeout(() => {
-          navigate("/token-lookup");
-        }, 2000);
-        setTimeout(() => {
-          SetResponse("");
-        },1200);
-      } else {
-        const res = await response.json();
-        SetResponse(res.message);
-        setTimeout(() => {
-          SetResponse("");
-        }, 2000);
-      }
-    } catch (error: unknown) {
-      console.log("Unknown error:", error);
-    }
+  const WhenSubmit: SubmitHandler<Info> = (data) => {
+    handleFormSubmit(data);
   };
 
   return (
@@ -99,5 +67,7 @@ const PassReset = () => {
     </div>
   );
 };
+
+export default PassReset;
 
 export default PassReset;

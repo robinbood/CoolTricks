@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import "../CSS/Main.css";
 import { useNavigate } from 'react-router';
+import Testimonials from './Testimonials';
+import Features from './Features';
 
 const Main: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,12 +12,13 @@ const Main: React.FC = () => {
     setIsVisible(true);
   }, []);
 
-  const handleLogin = () => {
+  const handleLogin = useCallback(() => {
     Navigate("/Signin");
-  };
-  const handleLogup = () => {
+  }, [Navigate]);
+
+  const handleLogup = useCallback(() => {
     Navigate("/Signup");
-  };
+  }, [Navigate]);
 
 
 
@@ -81,63 +84,7 @@ const Main: React.FC = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="prod-testimonials">
-        <div className="prod-container">
-          <div className="prod-testimonials-grid">
-            <div className="prod-testimonial">
-              <div className="prod-testimonial-content">
-                <div className="prod-testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p className="prod-testimonial-text">
-                  "Finally a place where I can share my daily wins guilt-free!
-                  The community here is insanely supportive."
-                </p>
-                <div className="prod-testimonial-author">
-                  <div className="prod-avatar">👩‍💻</div>
-                  <div>
-                    <h4>Sarah Chen</h4>
-                    <span>Software Developer</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="prod-testimonial">
-              <div className="prod-testimonial-content">
-                <div className="prod-testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p className="prod-testimonial-text">
-                  "The cheer system is addictive! Every morning I get excited
-                  to post what I accomplished."
-                </p>
-                <div className="prod-testimonial-author">
-                  <div className="prod-avatar">🏃‍♂️</div>
-                  <div>
-                    <h4>Mike Rodriguez</h4>
-                    <span>Marathon Runner</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="prod-testimonial">
-              <div className="prod-testimonial-content">
-                <div className="prod-testimonial-stars">⭐⭐⭐⭐⭐</div>
-                <p className="prod-testimonial-text">
-                  "Instead of social media doom-scrolling, now I get inspired
-                  by real people's progress. Game changer!"
-                </p>
-                <div className="prod-testimonial-author">
-                  <div className="prod-avatar">📚</div>
-                  <div>
-                    <h4>Jenny Park</h4>
-                    <span>Medical Student</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Testimonials />
 
       {/* Final Join - Bottom */}
       <section className="prod-final">
@@ -216,70 +163,12 @@ const Main: React.FC = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="prod-features">
-        <div className="prod-container">
-          <div className="prod-features-header">
-            <h2>More Than Just Tracking</h2>
-            <p>Turn productivity into a social, rewarding experience</p>
-          </div>
-
-          <div className="prod-features-grid">
-            <div className="prod-feature-card">
-              <div className="prod-feature-icon">🎯</div>
-              <h3 className="prod-feature-title">Smart Goal Setting</h3>
-              <p className="prod-feature-desc">
-                Set ambitious yet achievable goals. Our AI learns your habits and suggests personalized targets.
-              </p>
-            </div>
-
-            <div className="prod-feature-card">
-              <div className="prod-feature-icon">🎉</div>
-              <h3 className="prod-feature-title">Community Cheers</h3>
-              <p className="prod-feature-desc">
-                Get instant feedback and encouragement. Watch your motivation soar from peer recognition.
-              </p>
-            </div>
-
-            <div className="prod-feature-card">
-              <div className="prod-feature-icon">📊</div>
-              <h3 className="prod-feature-title">Visual Progress</h3>
-              <p className="prod-feature-desc">
-                Beautiful charts and insights that make tracking progress addictively satisfying.
-              </p>
-            </div>
-
-            <div className="prod-feature-card">
-              <div className="prod-feature-icon">🔥</div>
-              <h3 className="prod-feature-title">Streak Systems</h3>
-              <p className="prod-feature-desc">
-                Build momentum with gamified streaks. Never break a positive cycle again.
-              </p>
-            </div>
-
-            <div className="prod-feature-card">
-              <div className="prod-feature-icon">🎮</div>
-              <h3 className="prod-feature-title">Productivity Games</h3>
-              <p className="prod-feature-desc">
-                Turn chores into challenges. Make productivity fun with community competitions.
-              </p>
-            </div>
-
-            <div className="prod-feature-card">
-              <div className="prod-feature-icon">🤝</div>
-              <h3 className="prod-feature-title">Accountability Partners</h3>
-              <p className="prod-feature-desc">
-                Find study buddies, workout partners, or business accountability mates.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Features />
 
       {/* Gamification Section */}
       <section className="prod-gamification">
         <div className="prod-container">
-          <div className="prod-game-showcase">
+          <div className.prod-game-showcase">
             <div className="prod-game-header">
               <h2>Make Productivity Addictive</h2>
               <p>Watch your daily tasks transform into epic quests</p>
@@ -449,5 +338,7 @@ const Main: React.FC = () => {
     </div>
   );
 };
+
+export default Main;
 
 export default Main;

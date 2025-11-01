@@ -1,18 +1,21 @@
 import {NavLink, Outlet } from "react-router";
-interface Navbar {
+import { useMemo } from "react";
+
+interface NavbarItem {
   label: string;
   path: string;
 }
-const Navar = () => {
-  const items: Navbar[] = [
+
+const Navbar = () => {
+  const items: NavbarItem[] = useMemo(() => [
     { label: "Home", path: "/" },
     { label: "About This", path: "/api/about" },
-  ];
+  ], []);
 
   return (
     <>
     <nav>
-        {items.map((item : Navbar)  => {
+        {items.map((item : NavbarItem)  => {
             return (
               // so Navlink automaticallyt sets a class to the element or page that we navigated to on the navbar so we can style it differently
                 <NavLink key={item.path} to={item.path} className={({isActive}) => isActive ? "nav-link active" : "nav-link"} >{item.label}</NavLink>
@@ -28,4 +31,4 @@ const Navar = () => {
   )
 };
 
-export default Navar;
+export default Navbar;
