@@ -3,6 +3,8 @@ import type { SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import zxcvbn from "zxcvbn";
 import { useFormSubmit } from "../Functionalities/useFormSubmit";
+import { useContext } from "react";
+import { NotificationContext } from "../components/NotificationContext";
 
 interface Info {
   email:string,
@@ -13,6 +15,7 @@ interface Info {
 
 const SignUp = () => {
   const { response, handleSubmit: handleFormSubmit } = useFormSubmit<Info>({ url: "/Signup", redirectUrl: "/Signin" });
+  const { showNotification } = useContext(NotificationContext);
 
   const {
     register,
@@ -29,6 +32,7 @@ const SignUp = () => {
 
   const WhenSubmit: SubmitHandler<Info> = (data) => {
     handleFormSubmit(data);
+    showNotification("Signup successful!", "success");
   };
   return (
       <div className="Signup-form">
@@ -117,7 +121,5 @@ const SignUp = () => {
       </div>
     );
 };
-
-export default SignUp;
 
 export default SignUp;

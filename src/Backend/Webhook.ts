@@ -1,11 +1,11 @@
 // src/Backend/Webhook.ts
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.STRIPE_SECRET!, {
   apiVersion: "2025-08-27.basil",
 });
 
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+
 
 export default async function Webhook(req: Request) {
   const signature = req.headers.get("stripe-signature");
@@ -18,7 +18,7 @@ export default async function Webhook(req: Request) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+    ev);
   } catch (err: any) {
     console.error(`Webhook signature verification failed: ${err.message}`);
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });

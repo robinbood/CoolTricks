@@ -168,7 +168,7 @@ const Main: React.FC = () => {
       {/* Gamification Section */}
       <section className="prod-gamification">
         <div className="prod-container">
-          <div className.prod-game-showcase">
+          <div className="prod-game-showcase">
             <div className="prod-game-header">
               <h2>Make Productivity Addictive</h2>
               <p>Watch your daily tasks transform into epic quests</p>
@@ -338,7 +338,5 @@ const Main: React.FC = () => {
     </div>
   );
 };
-
-export default Main;
 
 export default Main;

@@ -69,5 +69,3 @@ const PassReset = () => {
 };
 
 export default PassReset;
-
-export default PassReset;

@@ -100,5 +100,3 @@ const TokenLook = () => {
 };
 
 export default TokenLook;
-
-export default TokenLook;
