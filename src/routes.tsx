@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import PassReset from "./Pages/PassReset";
 import TokenLook from "./Pages/TokenLookup";
 import Payment from "./Pages/Payment";
+import Completion from "./Pages/Completion";
 
 export const AppRoutes = () => (
   <Routes>
@@ -15,7 +16,8 @@ export const AppRoutes = () => (
     <Route path="/Signup" element={<SignUp />} />
     <Route path="/forgot-pass" element={<PassReset />} />
     <Route path="/subscribe" element={<Payment />} />
-    <Route path="token-lookup" element={<TokenLook />} />
+    <Route path="/completion" element={<Completion />} />
+    <Route path="/token-lookup" element={<TokenLook />} />
     <Route path="/home" element={<Navbar />}>
       <Route index element={<Home />} />
     </Route>

@@ -3,7 +3,7 @@ import { eq, name } from "drizzle-orm";
 import { SQL } from "bun";
 import { drizzle } from "drizzle-orm/bun-sql";
 import { users } from "@/Schema/Schema";
-const client = new SQL(Bun.env.DATABASE_URL!);
+const client = new SQL(process.env.DATABASE_URL!);
 const db = drizzle({ client });
 
 const store = new RedisClient();

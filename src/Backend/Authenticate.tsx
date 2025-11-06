@@ -23,7 +23,15 @@ const Authenticate = async (req: Request) => {
 
     } catch (error:unknown) {
         console.log("Auth error",error);
-         
+        return new Response(
+            JSON.stringify({
+                message: "Authentication failed",
+                error: error instanceof Error ? error.message : "Unknown error"
+            }),
+            {
+                status: 401,
+            }
+        );
     }
 }
 

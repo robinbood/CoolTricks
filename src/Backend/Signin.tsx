@@ -4,7 +4,7 @@ import { SQL } from "bun";
 import { RedisClient } from "bun";
 import { users } from "@/Schema/Schema";
 const store = new RedisClient();
-const client = new SQL(Bun.env.DATABASE_URL!);
+const client = new SQL(process.env.DATABASE_URL!);
 const db = drizzle({ client });
 
 const SignIn = async (req: Request) => {

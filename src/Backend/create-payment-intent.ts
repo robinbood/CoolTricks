@@ -1,6 +1,8 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET,{
-    apiVersion:'2024-04-10'
-})
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET!, {
+    apiVersion: "2025-08-27.basil"
+});
 
 // In a real application, you would fetch this from a database
 const products = {

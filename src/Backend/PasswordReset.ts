@@ -23,7 +23,7 @@ const passWordReset = async (req: Request) => {
   }
   const token1 = generator();
   // base64 hashed hashed API keys
-  const info = btoa(`${process.env.MAILJET_API}:${process.env.MAILJET_SECRET}`);
+  const info = btoa(`${process.env.MAILJET_API!}:${process.env.MAILJET_SECRET!}`);
   const authHeaders = new Headers({
     "Content-type": "application/json",
     Authorization: `Basic ${info}`,
