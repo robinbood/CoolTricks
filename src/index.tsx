@@ -8,6 +8,9 @@ import Authenticate from "./Backend/Authenticate";
 import CreatePaymentIntent from "./Backend/create-payment-intent";
 import Webhook from "./Backend/Webhook";
 import getPublishableKey from "./Backend/get-publishable-key";
+import getUserInfo from "./Backend/get-user-info";
+import getUserPosts from "./Backend/get-user-posts";
+import createPost from "./Backend/create-post";
 
 // CORS middleware
 const corsHeaders = {
@@ -128,6 +131,36 @@ const protectedRoutes = {
   "/create-payment-intent": {
     async POST(req: Request, userId: number) {
       const response = await CreatePaymentIntent(req, userId);
+      // Add CORS headers to the response
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+      return response;
+    }
+  },
+  "/get-user-info": {
+    async GET(req: Request, userId: number) {
+      const response = await getUserInfo(req, userId);
+      // Add CORS headers to the response
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+      return response;
+    }
+  },
+  "/get-user-posts": {
+    async GET(req: Request, userId: number) {
+      const response = await getUserPosts(req, userId);
+      // Add CORS headers to the response
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+      return response;
+    }
+  },
+  "/create-post": {
+    async POST(req: Request, userId: number) {
+      const response = await createPost(req, userId);
       // Add CORS headers to the response
       Object.entries(corsHeaders).forEach(([key, value]) => {
         response.headers.set(key, value);

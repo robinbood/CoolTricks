@@ -1,5 +1,5 @@
 import { RedisClient } from "bun";
-import { eq, name } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { SQL } from "bun";
 import { drizzle } from "drizzle-orm/bun-sql";
 import { users } from "@/Schema/Schema";

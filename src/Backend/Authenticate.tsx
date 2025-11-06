@@ -17,9 +17,9 @@ const Authenticate = async (req: Request) => {
         const [userid] = await store.hmget(key,[
             "userId"
         ])
-        return{
-            userId:Number(userid)
-        }
+        return {
+            userId: Number(userid)
+        } as { userId: number };
 
     } catch (error:unknown) {
         console.log("Auth error",error);

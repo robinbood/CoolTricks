@@ -43,6 +43,13 @@
       "when": 1758714741201,
       "tag": "0005_smiling_scarecrow",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1762447140618,
+      "tag": "0006_brave_titania",
+      "breakpoints": true
     }
   ]
 }
