@@ -47,6 +47,18 @@ const SignOut = async (req: Request) => {
           },
         }
       );
+    } else {
+      return new Response(
+        JSON.stringify({
+          message: "Session doesn't exist",
+        }),
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+          status: 404,
+        }
+      );
     }
   } catch (error: unknown) {
     return new Response(

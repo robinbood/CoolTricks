@@ -1,25 +1,78 @@
-import { Routes, Route } from "react-router-dom";
-import Main from "./Pages/Main";
-import SignIn from "./Pages/Signin";
-import SignUp from "./Pages/Signup";
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Pages/Navbar";
-import Home from "./Pages/Home";
-import PassReset from "./Pages/PassReset";
-import TokenLook from "./Pages/TokenLookup";
-import Payment from "./Pages/Payment";
-import Completion from "./Pages/Completion";
+import LoadingSpinner from "./components/ui/LoadingSpinner";
+import RouteGuard from "./components/RouteGuard";
 
-export const AppRoutes = () => (
-  <Routes>
-    <Route path="/" element={<Main />} />
-    <Route path="/Signin" element={<SignIn />} />
-    <Route path="/Signup" element={<SignUp />} />
-    <Route path="/forgot-pass" element={<PassReset />} />
-    <Route path="/subscribe" element={<Payment />} />
-    <Route path="/completion" element={<Completion />} />
-    <Route path="/token-lookup" element={<TokenLook />} />
-    <Route path="/home" element={<Navbar />}>
-      <Route index element={<Home />} />
-    </Route>
-  </Routes>
-);
+// Lazy load components
+const LazyMain = lazy(() => import("./Pages/Main"));
+const LazyHome = lazy(() => import("./Pages/Home"));
+const LazySignIn = lazy(() => import("./Pages/Signin"));
+const LazySignUp = lazy(() => import("./Pages/Signup"));
+const LazyPassReset = lazy(() => import("./Pages/PassReset"));
+const LazyCheckoutForm = lazy(() => import("./Pages/CheckoutForm"));
+const LazyCompletion = lazy(() => import("./Pages/Completion"));
+const LazyTokenLookup = lazy(() => import("./Pages/TokenLookup"));
+
+// Define route paths
+const ROUTES = {
+  MAIN: '/',
+  SIGNIN: '/Signin',
+  SIGNUP: '/Signup',
+  RESETPASS: '/forgot-pass',
+  TOKENLOOKUP: '/token-lookup',
+  HOME: '/home',
+  PAYMENT: '/subscribe',
+  COMPLETION: '/completion',
+};
+
+const publicRoutes = [
+  { path: ROUTES.MAIN, element: <LazyMain /> },
+  { path: ROUTES.SIGNIN, element: <LazySignIn /> },
+  { path: ROUTES.SIGNUP, element: <LazySignUp /> },
+  { path: ROUTES.RESETPASS, element: <LazyPassReset /> },
+  { path: ROUTES.TOKENLOOKUP, element: <LazyTokenLookup /> },
+];
+
+const privateRoutes = [
+  { path: ROUTES.HOME, element: <LazyHome /> },
+  { path: ROUTES.PAYMENT, element: <LazyCheckoutForm /> },
+  { path: ROUTES.COMPLETION, element: <LazyCompletion /> },
+];
+
+export function AppRoutes() {
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          {publicRoutes.map(({ path, element }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                <RouteGuard isPublic={true}>
+                  {element}
+                </RouteGuard>
+              }
+            />
+          ))}
+          {privateRoutes.map(({ path, element }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                <RouteGuard isProtected={true}>
+                  {element}
+                </RouteGuard>
+              }
+            />
+          ))}
+          <Route path="*" element={<div>Not Found</div>} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+}
+
+export { ROUTES };

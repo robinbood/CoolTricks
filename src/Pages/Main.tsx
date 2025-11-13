@@ -1,16 +1,46 @@
 import { useState, useEffect, useCallback } from 'react';
 import "../CSS/Main.css";
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { useAuthNavigation } from '../hooks/useAuthNavigation';
 import Testimonials from './Testimonials';
 import Features from './Features';
 
 const Main: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { loading, navigateIfAuthenticated } = useAuthNavigation();
+  const Navigate = useNavigate();
 
-  const Navigate = useNavigate()
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  // Redirect authenticated users to home page using our custom hook
+  useEffect(() => {
+    navigateIfAuthenticated('/home');
+  }, [navigateIfAuthenticated]);
+
+  // Show loading while checking authentication
+  if (loading) {
+    return (
+      <div className="loading-container" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        flexDirection: 'column'
+      }}>
+        <div className="loading-spinner" style={{
+          width: '40px',
+          height: '40px',
+          border: '4px solid rgba(0, 0, 0, 0.1)',
+          borderRadius: '50%',
+          borderTopColor: '#3498db',
+          animation: 'spin 1s ease-in-out infinite'
+        }}></div>
+        <p style={{ marginTop: '16px', color: '#666' }}>Checking authentication...</p>
+      </div>
+    );
+  }
 
   const handleLogin = useCallback(() => {
     Navigate("/Signin");

@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import { buildApiUrl } from '@/config/api';
 
 interface UseFormSubmitProps {
   url: string;
@@ -12,7 +13,7 @@ export const useFormSubmit = <T,>({ url, redirectUrl }: UseFormSubmitProps) => {
 
   const handleSubmit = useCallback(async (data: T) => {
     try {
-      const res = await fetch(`http://localhost:3000${url}`, {
+      const res = await fetch(buildApiUrl(url), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

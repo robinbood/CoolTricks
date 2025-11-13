@@ -16,6 +16,7 @@ export interface UserInfo {
 
 export interface UserWithSubscription extends UserInfo {
   isPremium: boolean;
+  role?: string; // For future role-based access control
 }
 
 // Authentication related types

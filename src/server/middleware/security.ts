@@ -332,7 +332,7 @@ export const getSecurityMiddleware = () => {
  * CORS configuration helper
  */
 export const configureCORS = (
-  allowedOrigins: string[] = ['http://localhost:3000'],
+  allowedOrigins: string[] = [import.meta.env.VITE_FRONTEND_URL || 'http://localhost:3000'],
   allowedMethods: string[] = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: string[] = ['Content-Type', 'Authorization'],
   credentials: boolean = true

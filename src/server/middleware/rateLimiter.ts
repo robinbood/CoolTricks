@@ -251,14 +251,6 @@ export const withRateLimit = (
     } catch (error) {
       // If it's a rate limit error, add headers
       if (error instanceof RateLimitError) {
-        const retryAfter = error.retryAfter || 60;
-        const headers = {
-          'Retry-After': retryAfter.toString(),
-          'X-RateLimit-Limit': '0',
-          'X-RateLimit-Remaining': '0',
-          'X-RateLimit-Reset': new Date(Date.now() + retryAfter * 1000).toISOString(),
-        };
-        
         // Re-throw the error to be handled by the error handler
         throw error;
       }

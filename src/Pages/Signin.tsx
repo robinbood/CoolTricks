@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import "../CSS/Form.css";
-import { useFormSubmit } from "../Functionalities/useFormSubmit";
+import { useAuth } from "../contexts/AuthContext";
+import { NotificationContext } from "../components/NotificationContext";
 
 interface Info {
   username: string;
@@ -10,14 +12,17 @@ interface Info {
 }
 
 const SignIn = () => {
-  const { response, handleSubmit: handleFormSubmit } = useFormSubmit<Info>({ url: "/Signin", redirectUrl: "/home" });
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const { showNotification } = useContext(NotificationContext);
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    
   } = useForm<Info>({
     defaultValues: {
       username: "",
@@ -25,17 +30,32 @@ const SignIn = () => {
     },
   });
 
-  const WhenSubmit: SubmitHandler<Info> = (data) => {
-    handleFormSubmit(data);
-    reset();
+  const WhenSubmit: SubmitHandler<Info> = async (data) => {
+    setLoading(true);
+    setError("");
+    
+    try {
+      const success = await signIn(data);
+      if (success) {
+        showNotification("Sign in successful!", "success");
+        navigate("/home");
+      } else {
+        setError("Invalid username or password");
+      }
+    } catch (err) {
+      setError("An error occurred during sign in");
+    } finally {
+      setLoading(false);
+      reset();
+    }
   };
 
   return (
     <div className="Signup-form">
       <div className="box">
-        <h2 className={response ? "response" : "heading"}>
-        {response ? (
-          response
+        <h2 className={error ? "response" : "heading"}>
+        {error ? (
+          error
         ) : (
           <>
             <span>Enter</span> your Info
@@ -81,7 +101,7 @@ const SignIn = () => {
           Not a member ? <Link to="/Signup"  >Sign up</Link>
         </h2>
 
-        <input type="submit" value="Sign In" />
+        <input type="submit" value={loading ? "Signing In..." : "Sign In"} disabled={loading} />
       </form>
     </div>
   );

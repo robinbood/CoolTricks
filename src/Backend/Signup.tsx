@@ -23,11 +23,10 @@ const SignUp = async (req: Request) => {
       }
     );
   }
-  // you don't have to declare the algo cuz its that by default but  i have trust issues
   const newPassword = await Bun.password.hash(password, {
     algorithm: "argon2id",
-    memoryCost: 10,
-    timeCost: 5,
+    memoryCost: 4,
+    timeCost: 3,
   });
   // drizzle FTW
   await db

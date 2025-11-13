@@ -1,5 +1,6 @@
-import {NavLink, Outlet } from "react-router";
+import { NavLink } from "react-router-dom";
 import { useMemo } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
 interface NavbarItem {
   label: string;
@@ -7,28 +8,97 @@ interface NavbarItem {
 }
 
 const Navbar = () => {
-  const items: NavbarItem[] = useMemo(() => [
-    { label: "Home", path: "/" },
-    { label: "About This", path: "/api/about" },
-  ], []);
+  const { isAuthenticated, user, loading, signOut } = useAuth();
+
+  // Define navigation items based on authentication status
+  const getNavItems = (): NavbarItem[] => {
+    const commonItems = [
+      { label: "Home", path: "/home" },
+    ];
+
+    if (isAuthenticated) {
+      return [
+        ...commonItems,
+        { label: "Payment", path: "/subscribe" },
+        { label: "Token Lookup", path: "/token-lookup" },
+      ];
+    } else {
+      return [
+        ...commonItems,
+        { label: "Sign In", path: "/Signin" },
+        { label: "Sign Up", path: "/Signup" },
+      ];
+    }
+  };
+
+  const items: NavbarItem[] = useMemo(() => getNavItems(), [isAuthenticated]);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("Sign out error:", error);
+    }
+  };
+
+  // Show a loading state while checking authentication
+  if (loading) {
+    return (
+      <nav className="prod-nav">
+        <div className="prod-nav-container">
+          <div className="prod-logo">
+            <span className="prod-logo-icon">🚀</span>
+            <span className="prod-logo-text">ProductiveSpace</span>
+          </div>
+          <div className="prod-nav-actions">
+            <div className="loading-indicator">Loading...</div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
-    <>
-    <nav>
-        {items.map((item : NavbarItem)  => {
-            return (
-              // so Navlink automaticallyt sets a class to the element or page that we navigated to on the navbar so we can style it differently
-                <NavLink key={item.path} to={item.path} className={({isActive}) => isActive ? "nav-link active" : "nav-link"} >{item.label}</NavLink>
-            )
-        })}
+    <nav className="prod-nav">
+      <div className="prod-nav-container">
+        <div className="prod-logo">
+          <span className="prod-logo-icon">🚀</span>
+          <span className="prod-logo-text">ProductiveSpace</span>
+        </div>
         
+        <div className="prod-nav-actions">
+          {items.map((item: NavbarItem) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                isActive ? "prod-nav-link active" : "prod-nav-link"
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+          
+          {/* Show user info and sign-out button when authenticated */}
+          {isAuthenticated && (
+            <>
+              {user && (
+                <span className="user-info">
+                  {user.name || user.username || user.email}
+                </span>
+              )}
+              <button
+                onClick={handleSignOut}
+                className="prod-btn-small sign-out-btn"
+              >
+                Sign Out
+              </button>
+            </>
+          )}
+        </div>
+      </div>
     </nav>
-    <main className="main-content">
-      {/* the most important part of the code,,everything gets rendered below the navbar....Hence you need the Outlet function */}
-      <Outlet/>
-    </main>
-    </>
-  )
+  );
 };
 
 export default Navbar;

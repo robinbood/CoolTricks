@@ -6,7 +6,7 @@ import { users, subscriptions } from "@/Schema/Schema";
 const client = new SQL(process.env.DATABASE_URL!);
 const db = drizzle(client, { schema: { users, subscriptions } });
 
-const getUserInfo = async (req: Request, userId: number) => {
+const getUserInfo = async (userId: number) => {
   try {
     // Get user information
     const userInfo = await db.query.users.findFirst({

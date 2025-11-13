@@ -6,11 +6,11 @@ const Authenticate = async (req: Request) => {
     const cookieHeader = req.headers.get("cookie")
     const hasCookie = cookieHeader?.startsWith("sessionId=")
     if(!hasCookie){
-        return Response.redirect("./Signin")
+        return Response.redirect("/Signin")
     }
     const key = cookieHeader?.split("=")[1]?.split(";")[0]
     if (!key) {
-        return Response.redirect("./Signin")
+        return Response.redirect("/Signin")
     }
     // get the keys from redis cache
     try {

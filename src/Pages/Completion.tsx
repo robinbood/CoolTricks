@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import "../CSS/Main.css";
 
 const Completion = () => {
@@ -11,7 +11,6 @@ const Completion = () => {
     
     // Parse URL parameters to get payment status
     const urlParams = new URLSearchParams(window.location.search);
-    const paymentIntent = urlParams.get('payment_intent');
     const paymentStatus = urlParams.get('redirect_status');
     
     // If payment was not successful, redirect to payment page

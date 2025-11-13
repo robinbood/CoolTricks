@@ -1,7 +1,8 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
+import { buildApiUrl, API_ENDPOINTS } from "../config/api";
 
 const Payment  = () => {
     const [clientSecret , SetClientSecret] = useState<string>("")
@@ -11,7 +12,7 @@ const Payment  = () => {
     useEffect(() => {
         const fetchPublishableKey = async () => {
             try {
-                const response = await fetch("http://localhost:3000/get-publishable-key");
+                const response = await fetch(buildApiUrl(API_ENDPOINTS.GET_PUBLISHABLE_KEY));
                 const { publishableKey } = await response.json();
                 setStripePromise(loadStripe(publishableKey));
             } catch (error) {
@@ -24,7 +25,7 @@ const Payment  = () => {
     useEffect( () => {
         const fetchClientSecret = async () => {
             try {
-                const response = await fetch("http://localhost:3000/create-payment-intent",{
+                const response = await fetch(buildApiUrl(API_ENDPOINTS.CREATE_PAYMENT_INTENT),{
                     method:"POST",
                     headers: {
                         'Content-Type': 'application/json'

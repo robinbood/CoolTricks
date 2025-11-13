@@ -1,4 +1,4 @@
-const getPublishableKey = async (req: Request) => {
+const getPublishableKey = async () => {
     try {
         return new Response(JSON.stringify({
             publishableKey: process.env.STRIPE_PUBLIC!

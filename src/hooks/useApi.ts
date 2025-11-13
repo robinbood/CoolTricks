@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { buildApiUrl } from '@/config/api';
 
 interface ApiResponse<T> {
   data?: T;
@@ -15,7 +16,10 @@ export const useApi = <T>(url: string, options?: RequestInit): ApiResponse<T> =>
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(url, options);
+        const response = await fetch(buildApiUrl(url), {
+          ...options,
+          credentials: 'include', // Important for including HTTP-only cookies
+        });
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -45,11 +49,12 @@ export const usePostApi = <T>(url: string): [(data: any) => Promise<T | undefine
       setLoading(true);
       setError(undefined);
       
-      const response = await fetch(url, {
+      const response = await fetch(buildApiUrl(url), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // Important for including HTTP-only cookies
         body: JSON.stringify(data),
       });
       

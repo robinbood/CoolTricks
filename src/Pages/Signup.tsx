@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import zxcvbn from "zxcvbn";
-import { useFormSubmit } from "../Functionalities/useFormSubmit";
-import { useContext } from "react";
 import { NotificationContext } from "../components/NotificationContext";
+import { buildApiUrl, API_ENDPOINTS } from "../config/api";
 
 interface Info {
   email:string,
@@ -14,8 +14,10 @@ interface Info {
 }
 
 const SignUp = () => {
-  const { response, handleSubmit: handleFormSubmit } = useFormSubmit<Info>({ url: "/Signup", redirectUrl: "/Signin" });
+  const navigate = useNavigate();
   const { showNotification } = useContext(NotificationContext);
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -30,16 +32,44 @@ const SignUp = () => {
     },
   });
 
-  const WhenSubmit: SubmitHandler<Info> = (data) => {
-    handleFormSubmit(data);
-    showNotification("Signup successful!", "success");
+  const WhenSubmit: SubmitHandler<Info> = async (data) => {
+    setLoading(true);
+    setError("");
+    
+    try {
+      // First, register the user
+      const response = await fetch(buildApiUrl(API_ENDPOINTS.SIGN_UP), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Important for including HTTP-only cookies
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        showNotification("Signup successful! Please sign in.", "success");
+        // Redirect to sign in page after successful signup
+        setTimeout(() => {
+          navigate("/Signin");
+        }, 2000);
+      } else {
+        setError(result.message || "Signup failed");
+      }
+    } catch (err) {
+      setError("An error occurred during signup");
+    } finally {
+      setLoading(false);
+    }
   };
   return (
       <div className="Signup-form">
         <div className="box">
-          <h2 className={response ? "response" : "heading"}>
-          {response ? (
-            response
+          <h2 className={error ? "response" : "heading"}>
+          {error ? (
+            error
           ) : (
             <>
               <span>Enter</span> your details
@@ -115,7 +145,7 @@ const SignUp = () => {
           )}
 
           <h2>Already a member ? <Link to="/Signin">Sign In</Link></h2>
-          <input type="submit" value="Create Account"  />
+          <input type="submit" value={loading ? "Creating Account..." : "Create Account"} disabled={loading} />
           
         </form>
       </div>
